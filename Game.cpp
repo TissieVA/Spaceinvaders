@@ -32,6 +32,8 @@ void Game::run() {
 
         GameController::getInstance().getEventmanager() ->addObserver(pla);
         win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
+        //win->setIcon(GameController::getInstance().getFactory()->makeSprite("Assets/spaceshipIcon.png"));
+
         while (!win->pollEvents())
         {
             timePast=win->getTimePast();

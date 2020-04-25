@@ -20,6 +20,7 @@ public:
     virtual void loadTexture(std::string path) =0;
 
     void setBackground(Sprite* background);
+    void setIcon(Sprite* icon);
 
     virtual bool pollEvents()=0;
     void enqueueGO(GameObject* gobject);
@@ -28,6 +29,7 @@ protected:
     std::queue<GameObject*> goQueue;
     double timePast;
     Sprite* background;
+    Sprite* icon;
 public:
     double getTimePast() const;
 

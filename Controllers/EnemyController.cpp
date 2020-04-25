@@ -19,7 +19,7 @@ void Controllers::EnemyController::createEnemies()
     for (int j = 0; j < rows; ++j) {
 
         for (int i = 0; i < columns; ++i) {
-            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * i)), lround(SCALE_Y * (10+(100*j))), lround(SCALE_X*200/2.5),
+            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * i)), lround(50*SCALE_Y+ SCALE_Y * (10+(100*j))), lround(SCALE_X*200/2.5),
                                    lround(SCALE_Y*185/2.5));
             enemyVector.push_back(enem);
         }

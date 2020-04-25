@@ -17,3 +17,8 @@ void Window::setBackground(Sprite* background)
 {
     Window::background = background;
 }
+
+void Window::setIcon(Sprite* icon)
+{
+    this->icon = icon;
+}

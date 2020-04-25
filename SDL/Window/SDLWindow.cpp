@@ -95,8 +95,13 @@ void SDLWindow::draw() {
 
     uint32_t ticks = SDL_GetTicks();
 
+    //SDL_Surface* icons = reinterpret_cast<SDL_Surface*>(icon);
+   // SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon));
+
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, reinterpret_cast<SDL_Texture*>(background->dispSprite()), nullptr, nullptr);
+
+
 
     while(!goQueue.empty())
     {
