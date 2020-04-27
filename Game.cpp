@@ -27,7 +27,7 @@ void Game::run() {
     if (win->create()) {
         auto* pla = new Player(600, 700, lround(SCALE_X*1267/8), lround(SCALE_Y*773/8));
         auto* buCo = new BulletController(pla);
-        auto* enCo = new EnemyController(3,4,buCo);
+        auto* enCo = new EnemyController(ROWS,COLUMNS,buCo);
         auto* miscCo = new MiscController(win);
 
         GameController::getInstance().getEventmanager() ->addObserver(pla);

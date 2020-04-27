@@ -46,13 +46,7 @@ void EnemyController::moveEnemies(double timePast)
 {
     bool previousMove = moveRight;
     bool hitBottom = false;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> master
->>>>>>> Stashed changes
+    int lowestEnem = 0;
     for (auto* enem: enemyVector)
     {
         if (enem->getXpos() <= 0)
@@ -63,11 +57,22 @@ void EnemyController::moveEnemies(double timePast)
         if(enem->getYpos()+enem->getHeight()>SCREEN_HEIGHT-150*SCALE_Y)
             hitBottom=true;
 
-        if((rand() %CHANCE +1) ==1) //chance of enemy to shoot
-        {
-            buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight(),1,true);
-        }
+        if(enem->getYpos()>lowestEnem)
+            lowestEnem= enem->getYpos();
 
+
+
+    }
+
+    for (auto* enem: enemyVector)
+    {
+        if(enem->getYpos() == lowestEnem) //only enemies at lowest row shoot
+        {
+            if((rand() %CHANCE +1) ==1) //chance of enemy to shoot
+            {
+                buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight(),1,true);
+            }
+        }
     }
 
     if (moveRight && previousMove == moveRight) //Moving to right and didn't hit border

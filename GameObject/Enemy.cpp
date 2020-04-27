@@ -15,7 +15,7 @@ Enemy::Enemy(int xpos, int ypos, int width, int height) : GameObject(xpos, ypos,
 void Enemy::update(double timepast)
 {
     if (timepast >0)
-        move(speed*xDirection*timepast*SCALE_X,yDirection*50*SCALE_Y);
+        move(speed*xDirection*timepast*SCALE_X,yDirection*DROPDOWNAMOUNT*SCALE_Y);
 }
 
 void Enemy::setXDirection(int xDirection)

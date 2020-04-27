@@ -21,13 +21,6 @@ namespace Controllers
         void createEnemies();
         void enqueueEnemies(Window* win);
         void moveEnemies(double timePast);
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> master
->>>>>>> Stashed changes
         void removeEnemies();
 
         const vector<Enemy*> &getEnemyVector() const;

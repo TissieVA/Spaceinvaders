@@ -47,11 +47,6 @@ bool SDLWindow::create() {
             }
         }
     }
-    if( TTF_Init() == -1 )
-    {
-        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
-
-    }
 
     return succes; //We want 0 back if everything went normal
 }
@@ -75,9 +70,7 @@ void SDLWindow::draw() {
 
 
    //SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon));
-    //font = TTF_OpenFont("Assets/lazy.ttf", 28);
-    //SDL_Color textcolor ={ 0,0,0};
-    //loadFromRenderedText("ABCHDH",textcolor);
+
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, reinterpret_cast<SDL_Texture*>(background->dispSprite()), nullptr, nullptr);
 
@@ -220,30 +213,14 @@ void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
             }
 }
 
-<<<<<<< Updated upstream
 void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
-=======
-<<<<<<< HEAD
-void SDLWindow::loadFromRenderedText( std::string textureText, SDL_Color textColor )
-=======
-void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
->>>>>>> master
->>>>>>> Stashed changes
 {
     //Get rid of preexisting texture
     //free();
 
     //Render text surface1
     /*
-<<<<<<< Updated upstream
    SDL_Surface* textSurface = TTF_RenderText_Solid( font, textString.c_str(), color );
-=======
-<<<<<<< HEAD
-   SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
-=======
-   SDL_Surface* textSurface = TTF_RenderText_Solid( font, textString.c_str(), color );
->>>>>>> master
->>>>>>> Stashed changes
     if( textSurface == NULL )
     {
         printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
@@ -251,18 +228,8 @@ void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
     else
     {
         //Create texture from surface pixels
-<<<<<<< Updated upstream
         text = SDL_CreateTextureFromSurface( renderer, textSurface );
         if( text == NULL )
-=======
-<<<<<<< HEAD
-        temptext = SDL_CreateTextureFromSurface( renderer, textSurface );
-        if( temptext == NULL )
-=======
-        text = SDL_CreateTextureFromSurface( renderer, textSurface );
-        if( text == NULL )
->>>>>>> master
->>>>>>> Stashed changes
         {
             printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
         }
@@ -272,10 +239,7 @@ void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
         SDL_FreeSurface( textSurface );
     }*/
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 
 
 
