@@ -46,6 +46,13 @@ void EnemyController::moveEnemies(double timePast)
 {
     bool previousMove = moveRight;
     bool hitBottom = false;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
+>>>>>>> Stashed changes
     for (auto* enem: enemyVector)
     {
         if (enem->getXpos() <= 0)

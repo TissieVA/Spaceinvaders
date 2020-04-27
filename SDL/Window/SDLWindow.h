@@ -38,6 +38,14 @@ private:
     SDL_Surface* PNGSurface = nullptr;
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* texture = nullptr;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    SDL_Texture* text = nullptr;
+    SDL_Texture* temptext = nullptr;
+=======
+>>>>>>> master
+>>>>>>> Stashed changes
     TTF_Font* font= nullptr;
     SDL_Texture* text = nullptr;
 
