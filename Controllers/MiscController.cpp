@@ -27,42 +27,41 @@ void Controllers::MiscController::showHealth(int health)
     }
 }
 
-void MiscController::bonus(double timepast)
+void MiscController::bonus(double timepast, Window* win)
 {
-    if(rand() %10000 +1 ==1 && bonusvector.empty()) //1 in 10000 chance of spawning adn if there isn't another bonusship
+    if(rand() %1000 +1 ==1 && bonusvector.empty()) //1 in 10000 chance of spawning adn if there isn't another bonusship
     {
-        auto* bonusship = new BonusShip(lround(SCALE_X*(SCREEN_WIDTH-SCALE_X*200)),lround(100*SCALE_Y),lround(SCALE_X*200),lround(SCALE_Y*100));
+        auto* bonusship = new BonusShip(0-lround(SCALE_X*200),lround(100*SCALE_Y),lround(SCALE_X*200),lround(SCALE_Y*100));
 
         bonusvector.push_back(bonusship);
+        win->enqueueGO(bonusship);
     }
+
+    for(int i=0; i<bonusvector.size() ;i++)
+    {
+        auto* bonus = bonusvector.at(i);
+        if(!bonus->isAlive())
+            bonusvector.erase(bonusvector.begin()+i);  //removes dead enemies from vector
+    }
+
+    for (auto* bonus:bonusvector)
+    {
+        win->enqueueGO(bonus);
+        bonus->update(win->getTimePast());
+    }
+    
     moveBonus(timepast);
 }
 
 void MiscController::moveBonus(double timepast)
 {
 
-    for(auto bonus: bonusvector)
+    for(auto* bonus : bonusvector)
     {
-        if (bonus->getXpos() <= 0)
-            moveRight=true;
-        else if (bonus->getXpos()+bonus->getWidth() >= SCREEN_WIDTH)
-            moveRight= false;
-    }
-
-    if (moveRight ) //Moving to right and didn't hit border
-    {
-        for (auto* bonus: bonusvector)
-        {
-            bonus->setXDirection(1);
-            bonus->update(timepast);
-        }
-    } else if (!moveRight)
-    {
-        for(auto* bonus: bonusvector)
-        {
-            bonus->setXDirection(-1);
-            bonus->update(timepast);
-        }
+        if(bonus->getXpos() >= SCREEN_WIDTH)
+            bonus->setAlive(0);
+        bonus->setXDirection(1);
+        bonus->update(timepast);
     }
 }
 

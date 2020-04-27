@@ -9,6 +9,7 @@
 #include "../GameObject/Enemy.h"
 #include "../Window/Window.h"
 #include "BulletController.h"
+#include "../GameObject/BonusShip.h"
 
 using namespace std;
 
@@ -20,7 +21,8 @@ namespace Controllers
         EnemyController(int rows, int columns,BulletController* buCo);
         void createEnemies();
         void enqueueEnemies(Window* win);
-        void moveEnemies(double timePast);
+        void moveEnemies(double timePast,Window* win);
+
         void removeEnemies();
 
         const vector<Enemy*> &getEnemyVector() const;
@@ -28,6 +30,7 @@ namespace Controllers
     private:
         vector<Enemy*> enemyVector;
         bool moveRight=true;
+        bool bonusRight=true;
         int rows;
         int columns;
         BulletController* buCo;

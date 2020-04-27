@@ -42,23 +42,27 @@ void Controllers::EnemyController::enqueueEnemies(Window* win)
     }
 }
 
-void Controllers::EnemyController::moveEnemies(double timePast)
+void EnemyController::moveEnemies(double timePast, Window* win)
 {
     bool previousMove = moveRight;
     bool hitBottom = false;
+
+
     for (auto* enem: enemyVector)
     {
+
         if (enem->getXpos() <= 0)
-            moveRight=true;
-        else if (enem->getXpos()+enem->getWidth() >= SCREEN_WIDTH)
-            moveRight= false;
+            moveRight = true;
+        else if (enem->getXpos() + enem->getWidth() >= SCREEN_WIDTH)
+            moveRight = false;
 
-        if(enem->getYpos()+enem->getHeight()>SCREEN_HEIGHT-150*SCALE_Y)
-            hitBottom=true;
+        if (enem->getYpos() + enem->getHeight() > SCREEN_HEIGHT - 150 * SCALE_Y)
+            hitBottom = true;
 
-        if((rand() %CHANCE +1) ==1) //chance of enemy to shoot
+        if ((rand() % CHANCE + 1) == 1) //chance of enemy to shoot
         {
-            buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight(),1,true);
+            buCo->addBullet(lround(enem->getXpos() + enem->getWidth() / 2), enem->getYpos() + enem->getHeight(), 1,
+                    true);
         }
 
     }
@@ -103,7 +107,6 @@ void Controllers::EnemyController::moveEnemies(double timePast)
         removeEnemies();
         createEnemies();
     }
-
 }
 
 void Controllers::EnemyController::removeEnemies()
@@ -118,5 +121,9 @@ const vector<Enemy*> &EnemyController::getEnemyVector() const
 {
     return enemyVector;
 }
+
+
+
+
 
 

@@ -33,6 +33,7 @@ void Controllers::BulletController::enqueueBullets(Window* win)
 
 void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector)
 {
+
     for (auto* bullet: bulletVector)
     {
         if(bullet->getDirection() < 0) //bullet coming from player
@@ -67,15 +68,12 @@ void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> 
                     bullet->setAlive(false);
                 }
             }
-
         }
 
         if(bullet->getYpos() <= 0 || bullet->getYpos()+bullet->getHeight()>= SCREEN_HEIGHT)
             bullet->setAlive(false);
 
         bullet->update(timePast);
-
-
     }
 }
 

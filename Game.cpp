@@ -42,7 +42,8 @@ void Game::run() {
             pla->update(timePast);
             win->enqueueGO(pla);
             enCo->enqueueEnemies(win);
-            enCo->moveEnemies(timePast);
+            enCo->moveEnemies(timePast,win);
+            miscCo->bonus(timePast,win);
             buCo->enqueueBullets(win);
             vector <Enemy*> temp = enCo->getEnemyVector();
             buCo->moveBullets(timePast,temp);
