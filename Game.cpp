@@ -43,6 +43,7 @@ void Game::run() {
             win->enqueueGO(pla);
             enCo->enqueueEnemies(win);
             enCo->moveEnemies(timePast);
+            miscCo->bonus(timePast,win);
             buCo->enqueueBullets(win);
             vector <Enemy*> temp = enCo->getEnemyVector();
             buCo->moveBullets(timePast,temp);

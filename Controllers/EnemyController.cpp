@@ -42,7 +42,7 @@ void Controllers::EnemyController::enqueueEnemies(Window* win)
     }
 }
 
-void Controllers::EnemyController::moveEnemies(double timePast)
+void EnemyController::moveEnemies(double timePast)
 {
     bool previousMove = moveRight;
     bool hitBottom = false;

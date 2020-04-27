@@ -213,6 +213,33 @@ void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
             }
 }
 
+void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
+{
+    //Get rid of preexisting texture
+    //free();
+
+    //Render text surface1
+    /*
+   SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
+    if( textSurface == NULL )
+    {
+        printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
+    }
+    else
+    {
+        //Create texture from surface pixels
+        temptext = SDL_CreateTextureFromSurface( renderer, textSurface );
+        if( temptext == NULL )
+        {
+            printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
+        }
+
+
+        //Get rid of old surface
+        SDL_FreeSurface( textSurface );
+    }*/
+}
+
 
 
 

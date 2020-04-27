@@ -18,7 +18,7 @@ namespace Controllers
     public:
         MiscController(Window* win);
         void showHealth(int health);
-        void bonus(double timepast);
+        void bonus(double timepast,Window* win);
         void moveBonus(double timepast);
 
     private:
