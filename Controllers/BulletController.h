@@ -9,6 +9,7 @@
 #include "../Window/Window.h"
 #include "../GameObject/Enemy.h"
 #include "../GameObject/Player.h"
+#include "../GameObject/BonusShip.h"
 #include <vector>
 using namespace std;
 
@@ -22,7 +23,7 @@ namespace Controllers
 
         void addBullet(int xPos, int yPos,int direction,bool fromEnemy);
         void enqueueBullets(Window* win);
-        void moveBullets(double timePast, vector<Enemy*> enemyVector);
+        void moveBullets(double timePast, vector<Enemy*> enemyVector, vector<BonusShip*> bonusVector);
 
         int getScore() const;
 

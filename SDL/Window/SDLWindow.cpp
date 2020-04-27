@@ -220,7 +220,7 @@ void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
 
     //Render text surface1
     /*
-   SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
+   SDL_Surface* textSurface = TTF_RenderText_Solid( font, textString.c_str(), color );
     if( textSurface == NULL )
     {
         printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
@@ -228,8 +228,8 @@ void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
     else
     {
         //Create texture from surface pixels
-        temptext = SDL_CreateTextureFromSurface( renderer, textSurface );
-        if( temptext == NULL )
+        text = SDL_CreateTextureFromSurface( renderer, textSurface );
+        if( text == NULL )
         {
             printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
         }

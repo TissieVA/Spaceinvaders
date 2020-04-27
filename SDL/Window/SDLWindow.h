@@ -38,9 +38,9 @@ private:
     SDL_Surface* PNGSurface = nullptr;
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* texture = nullptr;
-
-    SDL_Texture* text = nullptr;
     TTF_Font* font= nullptr;
+    SDL_Texture* text = nullptr;
+
 };
 
 #endif //GAME_SDLWINDOW_H

@@ -21,11 +21,13 @@ namespace Controllers
         void bonus(double timepast,Window* win);
         void moveBonus(double timepast);
 
+        const vector<BonusShip*> & getBonusVector() const;
+
     private:
         Window* win;
         vector<Health*> hearts;
         bool moveRight =true;
-        vector<BonusShip*> bonusvector;
+        vector<BonusShip*> bonusVector;
 
     };
 
