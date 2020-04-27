@@ -68,7 +68,7 @@ void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> 
                         bonus->setAlive(false);
                         bullet->setAlive(false);
                         score = score + (SCREEN_HEIGHT-bonus->getYpos());
-                        player->setHealth(player->getHealth()+1);  //if ship is hit, get extra live
+                        player->setHealth(player->getHealth()+1);  //if bonusship is hit, get extra live
                         break; //enemy hit
                     }
                 }
