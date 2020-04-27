@@ -10,11 +10,11 @@
 #include <stdio.h>
 #include "../../Window/Window.h"
 #include <string>
+#include <SDL2/SDL_ttf.h>
 #include "../../Constants.h"
 #include "../../Events/EventObserver.h"
 #include "../../Controllers/GameController.h"
 #include "../../Constants.h"
-#include <SDL2/SDL_ttf.h>
 
 class SDLWindow : public Window {
 public:
@@ -38,8 +38,9 @@ private:
     SDL_Surface* PNGSurface = nullptr;
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* texture = nullptr;
-    SDL_Texture* text = nullptr;
     TTF_Font* font= nullptr;
+    SDL_Texture* text = nullptr;
+
 };
 
 #endif //GAME_SDLWINDOW_H

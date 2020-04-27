@@ -12,8 +12,8 @@ BulletController::BulletController(Player* player)
 
 void Controllers::BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnemy)
 {
-   auto* bullet = new Bullet(xPos,yPos-lround(BULLET_HEIGHT*SCALE_Y),lround(BULLET_WIDTH*SCALE_X),lround(BULLET_HEIGHT*SCALE_Y),direction,fromEnemy);
-   bulletVector.push_back(bullet);
+    auto* bullet = new Bullet(xPos,yPos-lround(BULLET_HEIGHT*SCALE_Y),lround(BULLET_WIDTH*SCALE_X),lround(BULLET_HEIGHT*SCALE_Y),direction,fromEnemy);
+    bulletVector.push_back(bullet);
 }
 
 void Controllers::BulletController::enqueueBullets(Window* win)
@@ -31,9 +31,8 @@ void Controllers::BulletController::enqueueBullets(Window* win)
     }
 }
 
-void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector)
+void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,vector<BonusShip*> bonusVector)
 {
-
     for (auto* bullet: bulletVector)
     {
         if(bullet->getDirection() < 0) //bullet coming from player
@@ -43,7 +42,7 @@ void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> 
 
                 if (bullet->getXpos() + (bullet->getWidth() / 2) > enem->getXpos() &&
                     bullet->getXpos() + (bullet->getWidth() / 2) < enem->getXpos() +
-                                                                   enem->getHeight()) //if middle of xpos of bullet is more to right than left side of enemy and more to the left than the right side of the enemy
+                                                                   enem->getWidth()) //if middle of xpos of bullet is more to right than left side of enemy and more to the left than the right side of the enemy
                 {
                     if (bullet->getYpos() > enem->getYpos() && bullet->getYpos() < enem->getYpos() + enem->getHeight())
                     {
@@ -56,7 +55,26 @@ void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> 
                     }
                 }
             }
-        } else if (bullet->getDirection()>0) //coming from enemy
+            for (auto* bonus : bonusVector)
+            {
+                if (bullet->getXpos() + (bullet->getWidth() / 2) > bonus->getXpos() &&
+                    bullet->getXpos() + (bullet->getWidth() / 2) < bonus->getXpos() +
+                                                                   bonus->getWidth()) //if middle of xpos of bullet is more to right than left side of enemy and more to the left than the right side of the enemy
+                {
+                    if (bullet->getYpos() > bonus->getYpos() && bullet->getYpos() < bonus->getYpos() + bonus->getHeight())
+                    {
+                        //hit with an enemy
+
+                        bonus->setAlive(false);
+                        bullet->setAlive(false);
+                        score = score + (SCREEN_HEIGHT-bonus->getYpos());
+                        player->setHealth(player->getHealth()+1);  //if ship is hit, get extra live
+                        break; //enemy hit
+                    }
+                }
+            }
+        }
+        else if (bullet->getDirection()>0) //coming from enemy
         {
             if ((bullet->getYpos() + bullet->getHeight() >= player->getYpos()))
             {
@@ -68,12 +86,15 @@ void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> 
                     bullet->setAlive(false);
                 }
             }
+
         }
 
         if(bullet->getYpos() <= 0 || bullet->getYpos()+bullet->getHeight()>= SCREEN_HEIGHT)
             bullet->setAlive(false);
 
         bullet->update(timePast);
+
+
     }
 }
 

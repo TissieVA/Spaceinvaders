@@ -34,7 +34,6 @@ public:
     virtual void update(double timePast) =0;
 
     virtual void move(double x_direction,double y_direction);
-
 protected:
     Sprite* sprite;
     double xPos=0;

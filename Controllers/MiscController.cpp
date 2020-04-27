@@ -29,34 +29,33 @@ void Controllers::MiscController::showHealth(int health)
 
 void MiscController::bonus(double timepast, Window* win)
 {
-    if(rand() %1000 +1 ==1 && bonusvector.empty()) //1 in 10000 chance of spawning adn if there isn't another bonusship
+    if(rand() %1000 +1 ==1 && bonusVector.empty()) //1 in 10000 chance of spawning adn if there isn't another bonusship
     {
-        auto* bonusship = new BonusShip(0-lround(SCALE_X*200),lround(100*SCALE_Y),lround(SCALE_X*200),lround(SCALE_Y*100));
+        auto* bonusship = new BonusShip(-lround(SCALE_X*200),lround(100*SCALE_Y),lround(SCALE_X*200),lround(SCALE_Y*100));
 
-        bonusvector.push_back(bonusship);
+        bonusVector.push_back(bonusship);
         win->enqueueGO(bonusship);
     }
 
-    for(int i=0; i<bonusvector.size() ;i++)
+    for(int i=0; i<bonusVector.size() ;i++)
     {
-        auto* bonus = bonusvector.at(i);
+        auto* bonus = bonusVector.at(i);
         if(!bonus->isAlive())
-            bonusvector.erase(bonusvector.begin()+i);  //removes dead enemies from vector
+            bonusVector.erase(bonusVector.begin()+i);  //removes dead enemies from vector
     }
 
-    for (auto* bonus:bonusvector)
+    for (auto* bonus:bonusVector)
     {
         win->enqueueGO(bonus);
         bonus->update(win->getTimePast());
     }
-    
     moveBonus(timepast);
 }
 
 void MiscController::moveBonus(double timepast)
 {
 
-    for(auto* bonus : bonusvector)
+    for(auto* bonus : bonusVector)
     {
         if(bonus->getXpos() >= SCREEN_WIDTH)
             bonus->setAlive(0);
@@ -64,6 +63,11 @@ void MiscController::moveBonus(double timepast)
         bonus->update(timepast);
     }
 }
+
+const vector<BonusShip*> & MiscController::getBonusVector() const{
+return bonusVector;
+}
+
 
 
 
