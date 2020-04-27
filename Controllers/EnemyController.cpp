@@ -42,15 +42,13 @@ void Controllers::EnemyController::enqueueEnemies(Window* win)
     }
 }
 
-void EnemyController::moveEnemies(double timePast, Window* win)
+void EnemyController::moveEnemies(double timePast)
 {
     bool previousMove = moveRight;
     bool hitBottom = false;
 
-
     for (auto* enem: enemyVector)
     {
-
         if (enem->getXpos() <= 0)
             moveRight = true;
         else if (enem->getXpos() + enem->getWidth() >= SCREEN_WIDTH)

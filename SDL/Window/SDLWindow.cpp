@@ -47,6 +47,11 @@ bool SDLWindow::create() {
             }
         }
     }
+    if( TTF_Init() == -1 )
+    {
+        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+
+    }
 
     return succes; //We want 0 back if everything went normal
 }
@@ -70,7 +75,9 @@ void SDLWindow::draw() {
 
 
    //SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon));
-
+    //font = TTF_OpenFont("Assets/lazy.ttf", 28);
+    //SDL_Color textcolor ={ 0,0,0};
+    //loadFromRenderedText("ABCHDH",textcolor);
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, reinterpret_cast<SDL_Texture*>(background->dispSprite()), nullptr, nullptr);
 
@@ -213,13 +220,14 @@ void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
             }
 }
 
-/*void SDLWindow::loadFromRenderedText( std::string textureText, SDL_Color textColor )
+void SDLWindow::loadFromRenderedText( std::string textureText, SDL_Color textColor )
 {
     //Get rid of preexisting texture
     //free();
 
-    //Render text surface
-    SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
+    //Render text surface1
+    /*
+   SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
     if( textSurface == NULL )
     {
         printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
@@ -227,25 +235,17 @@ void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
     else
     {
         //Create texture from surface pixels
-        texture = SDL_CreateTextureFromSurface( renderer, textSurface );
-        if( mTexture == NULL )
+        temptext = SDL_CreateTextureFromSurface( renderer, textSurface );
+        if( temptext == NULL )
         {
             printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
         }
-        else
-        {
-            //Get image dimensions
-            mWidth = textSurface->w;
-            mHeight = textSurface->h;
-        }
+
 
         //Get rid of old surface
         SDL_FreeSurface( textSurface );
-    }
-
-    //Return success
-    return mTexture != NULL;
-}*/
+    }*/
+}
 
 
 

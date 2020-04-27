@@ -39,6 +39,7 @@ private:
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* texture = nullptr;
     SDL_Texture* text = nullptr;
+    SDL_Texture* temptext = nullptr;
     TTF_Font* font= nullptr;
 };
 

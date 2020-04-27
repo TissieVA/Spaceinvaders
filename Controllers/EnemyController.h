@@ -21,7 +21,7 @@ namespace Controllers
         EnemyController(int rows, int columns,BulletController* buCo);
         void createEnemies();
         void enqueueEnemies(Window* win);
-        void moveEnemies(double timePast,Window* win);
+        void moveEnemies(double timePast);
 
         void removeEnemies();
 
