@@ -8,6 +8,7 @@
 
 #include "../Window/Window.h"
 #include "../GameObject/Health.h"
+#include "../GameObject/BonusShip.h"
 
 namespace Controllers
 
@@ -17,10 +18,15 @@ namespace Controllers
     public:
         MiscController(Window* win);
         void showHealth(int health);
+        void bonus(double timepast);
+        void moveBonus(double timepast);
 
     private:
         Window* win;
         vector<Health*> hearts;
+        bool moveRight =true;
+        vector<BonusShip*> bonusvector;
+
     };
 
 }

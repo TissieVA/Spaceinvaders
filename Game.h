@@ -18,6 +18,7 @@ public:
 private:
     AFactory* AF;
     double timePast;
+
 };
 
 

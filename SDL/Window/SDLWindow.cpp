@@ -64,39 +64,12 @@ void SDLWindow::remove() {
     SDL_Quit();
 }
 
-
-/*
-void SDLWindow::draw() {
-
-    image = SDL_LoadBMP("Assets/hello_world.bmp");
-
-    if ( image == nullptr)
-        printf("Could not load image %s. SDL_error: %s","Window/hello_world.bmp", SDL_errorcode() );
-    else {
-
-            SDL_BlitSurface(image, nullptr, screenSurface, nullptr);
-            SDL_UpdateWindowSurface(window);
-            SDL_Delay(50);
-        }
-    }
-*/
-/*void SDLWindow::draw() {
-
-    if ( image == nullptr)
-        printf("Could not load image. SDL_error: %s",, SDL_errorcode() );
-    else {
-            SDL_BlitSurface(image, nullptr, screenSurface, nullptr);
-            SDL_UpdateWindowSurface(window);
-            SDL_Delay(50);
-        }
-}*/
-
 void SDLWindow::draw() {
 
     uint32_t ticks = SDL_GetTicks();
 
-    //SDL_Surface* icons = reinterpret_cast<SDL_Surface*>(icon);
-   // SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon));
+
+   //SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon));
 
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, reinterpret_cast<SDL_Texture*>(background->dispSprite()), nullptr, nullptr);

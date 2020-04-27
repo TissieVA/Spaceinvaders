@@ -6,9 +6,20 @@
 #define GAME_BONUSSHIP_H
 
 
-class BonusShip
-{
+#include "GameObject.h"
+#include "../Controllers/GameController.h"
+#include "Enemy.h"
 
+using namespace Controllers;
+
+class BonusShip : public Enemy
+{
+public:
+    BonusShip(int xPos, int yPos, int width, int height);
+    void update(double timepast) override;
+
+protected:
+    double speed = BONUSSHIP_SPEED;
 };
 
 
