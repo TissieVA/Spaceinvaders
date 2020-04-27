@@ -15,7 +15,7 @@ const int BULLET_HEIGHT = 10;
 const int PLAYER_SPEED = 500;
 const int ENEMY_SPEED = 100;
 const int BULLET_SPEED = 150;
-const int BONUSSHIP_SPEED=100;
+const int BONUSSHIP_SPEED=200;
 
 const int CHANCE =1000;
 

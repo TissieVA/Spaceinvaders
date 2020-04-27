@@ -14,7 +14,6 @@
 #include "../../Events/EventObserver.h"
 #include "../../Controllers/GameController.h"
 #include "../../Constants.h"
-#include <SDL2/SDL_ttf.h>
 
 class SDLWindow : public Window {
 public:
@@ -25,7 +24,6 @@ public:
     void drawStretch() override;
     void loadSurface(std::string path);
     void loadTexture(std::string path);
-    void loadFromRenderedText(std::string textString, SDL_Color color);
 
     SDL_Renderer* getRenderer(){return renderer;}
     void KeyEvent(SDL_Keycode press, bool pressed);
@@ -38,8 +36,6 @@ private:
     SDL_Surface* PNGSurface = nullptr;
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* texture = nullptr;
-    SDL_Texture* text = nullptr;
-    TTF_Font* font= nullptr;
 };
 
 #endif //GAME_SDLWINDOW_H

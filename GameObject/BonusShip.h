@@ -17,7 +17,6 @@ class BonusShip : public Enemy
 public:
     BonusShip(int xPos, int yPos, int width, int height);
     void update(double timepast) override;
-    void move(double x_direction, double y_direction) override;
 
 protected:
     double speed = BONUSSHIP_SPEED;
