@@ -47,10 +47,13 @@ void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> 
                     if (bullet->getYpos() > enem->getYpos() && bullet->getYpos() < enem->getYpos() + enem->getHeight())
                     {
                         //hit with an enemy
-
-                        enem->setAlive(false);
+                        if(enem->isCanShoot()) //can only kill lowest in a column
+                        {
+                            enem->setAlive(false);
+                            score += (SCREEN_HEIGHT - enem->getYpos());
+                        }
                         bullet->setAlive(false);
-                        score = score + (SCREEN_HEIGHT-enem->getYpos());
+
                         break; //enemy hit
                     }
                 }

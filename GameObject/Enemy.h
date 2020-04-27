@@ -24,11 +24,18 @@ public:
 
     bool isAlive() const;
 
+    bool isCanShoot() const;
+
+    void setCanShoot(bool canShoot);
+
+
 protected:
     bool alive;
+    bool canShoot =false;
     int xDirection=0;
     int yDirection=0;
     double speed = ENEMY_SPEED;
+
 };
 
 

@@ -16,15 +16,20 @@ Controllers::EnemyController::EnemyController(int rows, int columns, BulletContr
 
 void Controllers::EnemyController::createEnemies()
 {
-    for (int j = 0; j < rows; ++j) {
+    for (int j = 0; j < columns; ++j) {
 
-        for (int i = 0; i < columns; ++i) {
-            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * i)), lround(50*SCALE_Y+ SCALE_Y * (10+(100*j))), lround(SCALE_X*200/2.5),
+        for (int i = 0; i < rows; ++i) {
+            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * j)), lround(50*SCALE_Y+ SCALE_Y * (10+(100*i))), lround(SCALE_X*200/2.5),
                                    lround(SCALE_Y*185/2.5));
             enemyVector.push_back(enem);
         }
     }
 }
+//      1       6       10
+//      2       7       11
+//      3       8       12
+//      5       9       13   etc.
+
 
 void Controllers::EnemyController::enqueueEnemies(Window* win)
 {
@@ -46,7 +51,21 @@ void EnemyController::moveEnemies(double timePast)
 {
     bool previousMove = moveRight;
     bool hitBottom = false;
-    int lowestEnem = 0;
+
+    for (int i =0;i<enemyVector.size();i++) //check which ones can shoot
+    {
+        if(i != enemyVector.size()-1) //if not last enemy
+        {
+
+            if(enemyVector.at(i)->getXpos()< enemyVector.at(i+1)->getXpos()) //if next enemy is more to the right (means this enemy is at the bottom)
+                enemyVector.at(i)->setCanShoot(true);
+            else
+                enemyVector.at(i)->setCanShoot(false);
+        } else
+            enemyVector.at(i)->setCanShoot(true); //last enemy can always shoot
+
+    }
+
     for (auto* enem: enemyVector)
     {
         if (enem->getXpos() <= 0)
@@ -57,22 +76,14 @@ void EnemyController::moveEnemies(double timePast)
         if(enem->getYpos()+enem->getHeight()>SCREEN_HEIGHT-150*SCALE_Y)
             hitBottom=true;
 
-        if(enem->getYpos()>lowestEnem)
-            lowestEnem= enem->getYpos();
-
-
-
-    }
-
-    for (auto* enem: enemyVector)
-    {
-        if(enem->getYpos() == lowestEnem) //only enemies at lowest row shoot
+        if(enem->isCanShoot()) //if enemy can shoot (no one underneath him)
         {
             if((rand() %CHANCE +1) ==1) //chance of enemy to shoot
             {
                 buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight(),1,true);
             }
         }
+
     }
 
     if (moveRight && previousMove == moveRight) //Moving to right and didn't hit border

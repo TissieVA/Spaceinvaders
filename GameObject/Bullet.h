@@ -22,7 +22,7 @@ public:
 
 private:
     bool alive;
-    double speed=BULLET_SPEED;
+    double speed;
     int direction;
 };
 

@@ -37,3 +37,13 @@ bool Enemy::isAlive() const
 {
     return alive;
 }
+
+void Enemy::setCanShoot(bool canShoot)
+{
+    Enemy::canShoot = canShoot;
+}
+
+bool Enemy::isCanShoot() const
+{
+    return canShoot;
+}
