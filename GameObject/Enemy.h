@@ -9,34 +9,39 @@
 #include "../Events/EventObserver.h"
 #include "../Controllers/GameController.h"
 
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
+using namespace SpaceInvaders::GameObjects;
 
-class Enemy : public GameObject {
-public:
-    Enemy(int xpos, int ypos, int width, int height);
-    void update(double timepast) override;
+namespace SpaceInvaders::GameObjects
+{
+    class Enemy : public GameObject
+    {
+    public:
+        Enemy(int xpos, int ypos, int width, int height);
 
-    void setXDirection(int xDirection);
+        void update(double timepast) override;
 
-    void setYDirection(int yDirection);
+        void setXDirection(int xDirection);
 
-    void setAlive(bool alive);
+        void setYDirection(int yDirection);
 
-    bool isAlive() const;
+        void setAlive(bool alive);
 
-    bool isCanShoot() const;
+        bool isAlive() const;
 
-    void setCanShoot(bool canShoot);
+        bool isCanShoot() const;
+
+        void setCanShoot(bool canShoot);
 
 
-protected:
-    bool alive;
-    bool canShoot =false;
-    int xDirection=0;
-    int yDirection=0;
-    double speed = ENEMY_SPEED;
+    protected:
+        bool alive;
+        bool canShoot = false;
+        int xDirection = 0;
+        int yDirection = 0;
+        double speed = ENEMY_SPEED;
 
-};
-
+    };
+}
 
 #endif //GAME_ENEMY_H

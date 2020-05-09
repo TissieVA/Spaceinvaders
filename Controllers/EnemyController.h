@@ -12,14 +12,14 @@
 
 using namespace std;
 
-namespace Controllers
+namespace SpaceInvaders::Controllers
 {
     class EnemyController
     {
     public:
         EnemyController(int rows, int columns,BulletController* buCo);
         void createEnemies();
-        void enqueueEnemies(Window* win);
+        void enqueueEnemies(SpaceInvaders::Window::Window* win);
         void moveEnemies(double timePast);
         void removeEnemies();
 

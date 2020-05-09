@@ -11,12 +11,12 @@
 
 using namespace std;
 
-namespace Factories {
+namespace SpaceInvaders::Factories {
 
     class AFactory {
     public:
         //virtual PlayerShip* CreatePS()=0;
-        virtual Window* makeWindow() =0;
+        virtual SpaceInvaders::Window::Window* makeWindow() =0;
         virtual Sprite* makeSprite(string path)=0;
     };
 }

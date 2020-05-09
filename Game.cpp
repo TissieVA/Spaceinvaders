@@ -10,9 +10,11 @@
 #include "Controllers/EnemyController.h"
 #include "Controllers/BulletController.h"
 #include "Controllers/MiscController.h"
+#include "Text/Text.h"
 
-using namespace Factories;
-using namespace Controllers;
+using namespace SpaceInvaders::Factories;
+using namespace SpaceInvaders::Controllers;
+using namespace SpaceInvaders::Text;
 
 Game::Game(AFactory *afac) {
     AF = afac;
@@ -33,7 +35,7 @@ void Game::run() {
         GameController::getInstance().getEventmanager() ->addObserver(pla);
         win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
         //win->setIcon(GameController::getInstance().getFactory()->makeSprite("Assets/spaceshipIcon.png"));
-
+        //auto* points = new Text("TEST",100,100,100,100,lazy.ttf);
         while (!win->pollEvents())
         {
             timePast=win->getTimePast();

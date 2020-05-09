@@ -8,7 +8,7 @@
 using namespace std;
 
 
-Window *SDLFactory::makeWindow() {
+SpaceInvaders::Window::Window* SDLFactory::makeWindow() {
 
     return new SDLWindow ;
 }

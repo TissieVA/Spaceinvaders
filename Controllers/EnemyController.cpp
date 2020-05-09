@@ -5,8 +5,9 @@
 #include <cmath>
 #include "EnemyController.h"
 #include "../GameObject/Enemy.h"
+using namespace SpaceInvaders::Controllers;
 
-Controllers::EnemyController::EnemyController(int rows, int columns, BulletController* buCo)
+EnemyController::EnemyController(int rows, int columns, BulletController* buCo)
 {
     this->rows=rows;
     this->columns=columns;
@@ -14,7 +15,7 @@ Controllers::EnemyController::EnemyController(int rows, int columns, BulletContr
     createEnemies();
 }
 
-void Controllers::EnemyController::createEnemies()
+void EnemyController::createEnemies()
 {
     for (int j = 0; j < columns; ++j) {
 
@@ -31,7 +32,7 @@ void Controllers::EnemyController::createEnemies()
 //      5       9       13   etc.
 
 
-void Controllers::EnemyController::enqueueEnemies(Window* win)
+void EnemyController::enqueueEnemies(SpaceInvaders::Window::Window* win)
 {
     for(int i=0; i<enemyVector.size() ;i++)
     {
@@ -129,7 +130,7 @@ void EnemyController::moveEnemies(double timePast)
 
 }
 
-void Controllers::EnemyController::removeEnemies()
+void EnemyController::removeEnemies()
 {
     for (auto* enem: enemyVector)
     {

@@ -7,24 +7,28 @@
 
 
 #include "GameObject.h"
+using namespace SpaceInvaders::GameObjects;
 
-class Bullet : public GameObject
+namespace SpaceInvaders::GameObjects
 {
-public:
-    Bullet(int xPos, int yPos, int width, int height,int direction, bool enemy);
-    void update(double timePast) override;
+    class Bullet : public GameObject
+    {
+    public:
+        Bullet(int xPos, int yPos, int width, int height, int direction, bool enemy);
 
-    void setAlive(bool alive);
+        void update(double timePast) override;
 
-    bool isAlive() const;
+        void setAlive(bool alive);
 
-    int getDirection() const;
+        bool isAlive() const;
 
-private:
-    bool alive;
-    double speed;
-    int direction;
-};
+        int getDirection() const;
 
+    private:
+        bool alive;
+        double speed;
+        int direction;
+    };
+}
 
 #endif //GAME_BULLET_H

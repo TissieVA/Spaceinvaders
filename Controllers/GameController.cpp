@@ -5,7 +5,7 @@
 #include <cmath>
 #include "GameController.h"
 
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
 
 GameController::GameController() {
     eventManager = new Events::EventManager();
@@ -15,7 +15,7 @@ GameController::~GameController() {
 
 }
 
-Factories::AFactory *GameController::getFactory() const {
+SpaceInvaders::Factories::AFactory *GameController::getFactory() const {
     return factory;
 }
 
@@ -23,7 +23,7 @@ void GameController::setFactory(Factories::AFactory *factory) {
     GameController::factory = factory;
 }
 
-Events::EventManager *GameController::getEventmanager() {
+SpaceInvaders::Events::EventManager *GameController::getEventmanager() {
     return eventManager;
 }
 

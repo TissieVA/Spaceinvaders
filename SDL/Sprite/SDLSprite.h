@@ -11,6 +11,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 using namespace std;
+using namespace SpaceInvaders::Sprites;
 
 class SDLSprite : public Sprite {
 public:

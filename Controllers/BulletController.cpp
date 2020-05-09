@@ -5,18 +5,20 @@
 #include "BulletController.h"
 #include <math.h>
 using namespace std;
+using namespace SpaceInvaders::Controllers;
+
 BulletController::BulletController(Player* player)
 {
     this->player=player;
 }
 
-void Controllers::BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnemy)
+void BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnemy)
 {
     auto* bullet = new Bullet(xPos,yPos-lround(BULLET_HEIGHT*SCALE_Y),lround(BULLET_WIDTH*SCALE_X),lround(BULLET_HEIGHT*SCALE_Y),direction,fromEnemy);
     bulletVector.push_back(bullet);
 }
 
-void Controllers::BulletController::enqueueBullets(Window* win)
+void BulletController::enqueueBullets(SpaceInvaders::Window::Window* win)
 {
     for (int i=0; i< bulletVector.size(); i++)
     {
@@ -31,7 +33,7 @@ void Controllers::BulletController::enqueueBullets(Window* win)
     }
 }
 
-void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,vector<BonusShip*> bonusVector)
+void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,vector<BonusShip*> bonusVector)
 {
     for (auto* bullet: bulletVector)
     {
@@ -71,7 +73,8 @@ void Controllers::BulletController::moveBullets(double timePast, vector<Enemy*> 
                         bonus->setAlive(false);
                         bullet->setAlive(false);
                         score = score + (SCREEN_HEIGHT-bonus->getYpos());
-                        player->setHealth(player->getHealth()+1);  //if bonusship is hit, get extra live
+                        if(player->getHealth()<MAX_HEALTH)
+                            player->setHealth(player->getHealth()+1);  //if bonusship is hit, get extra live
                         break; //enemy hit
                     }
                 }

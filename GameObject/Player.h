@@ -8,25 +8,31 @@
 #include "GameObject.h"
 #include "../Events/EventObserver.h"
 
-class Player: public GameObject, public Events::EventObserver {
-public:
-    Player(int xpos,int ypos, int width, int height);
-    void KeyUp(Events::Key press) override;
-    void KeyDown(Events::Key press) override;
-    void update(double timePast) override;
+namespace SpaceInvaders::GameObjects
+{
+    class Player : public SpaceInvaders::GameObjects::GameObject, public SpaceInvaders::Events::EventObserver
+    {
+    public:
+        Player(int xpos, int ypos, int width, int height);
 
-    bool isShoot() const;
+        void KeyUp(SpaceInvaders::Events::Key press) override;
 
-    int getHealth() const;
+        void KeyDown(SpaceInvaders::Events::Key press) override;
 
-    void setHealth(int health);
+        void update(double timePast) override;
 
-private:
-    int direction=0; // no movement
-    int health=3;
-    double speed = PLAYER_SPEED;
-    bool shoot=false;
-};
+        bool isShoot() const;
 
+        int getHealth() const;
+
+        void setHealth(int health);
+
+    private:
+        int direction = 0; // no movement
+        int health = 3;
+        double speed = PLAYER_SPEED;
+        bool shoot = false;
+    };
+}
 
 #endif //GAME_PLAYER_H

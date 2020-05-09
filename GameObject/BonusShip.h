@@ -10,18 +10,22 @@
 #include "../Controllers/GameController.h"
 #include "Enemy.h"
 
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
 
-class BonusShip : public Enemy
+namespace SpaceInvaders::GameObjects
 {
-public:
-    BonusShip(int xPos, int yPos, int width, int height);
-    void update(double timepast) override;
-    void move(double x_direction, double y_direction) override;
+    class BonusShip : public Enemy
+    {
+    public:
+        BonusShip(int xPos, int yPos, int width, int height);
 
-protected:
-    double speed = BONUSSHIP_SPEED;
-};
+        void update(double timepast) override;
 
+        void move(double x_direction, double y_direction) override;
+
+    protected:
+        double speed = BONUSSHIP_SPEED;
+    };
+}
 
 #endif //GAME_BONUSSHIP_H

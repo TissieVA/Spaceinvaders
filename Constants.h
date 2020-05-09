@@ -24,6 +24,7 @@ const int BONUSCHANCE =5000;
 const int DROPDOWNAMOUNT =30; //how much the enemies go down if they hit the border
 const int ROWS =4; //amount of rows of enemies
 const int COLUMNS =6; //amount of columns of enemies
+const int MAX_HEALTH =5;
 
 const double SCALE_X = SCREEN_WIDTH/ static_cast<double>(SCREEN_WIDTH_DEFAULT);
 const double SCALE_Y = SCREEN_HEIGHT/ static_cast<double>(SCREEN_HEIGHT_DEFAULT);

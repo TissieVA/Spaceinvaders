@@ -4,7 +4,7 @@
 #include "Game.h"
 #include "SDL/Factories/SDLFactory.h"
 
-using namespace Factories;
+using namespace SpaceInvaders::Factories;
 
 int main (int argc, char *argv[]) {
     AFactory* AF = new SDLFactory();

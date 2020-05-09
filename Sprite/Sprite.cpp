@@ -3,6 +3,7 @@
 //
 
 #include "Sprite.h"
+using namespace SpaceInvaders::Sprites;
 
 Sprite::Sprite(std::string path)
 {

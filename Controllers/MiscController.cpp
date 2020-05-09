@@ -4,14 +4,14 @@
 
 #include <cmath>
 #include "MiscController.h"
+using namespace SpaceInvaders::Controllers;
 
-
-Controllers::MiscController::MiscController(Window* win)
+MiscController::MiscController(SpaceInvaders::Window::Window* win)
 {
     this->win=win;
 }
 
-void Controllers::MiscController::showHealth(int health)
+void MiscController::showHealth(int health)
 {
     hearts.clear();
     for (int i = 0; i < health+1; i++)
@@ -27,7 +27,7 @@ void Controllers::MiscController::showHealth(int health)
     }
 }
 
-void MiscController::bonus(double timepast, Window* win)
+void MiscController::bonus(double timepast, SpaceInvaders::Window::Window* win)
 {
     if(rand() %BONUSCHANCE +1 ==1 && bonusVector.empty()) //1 in BONUSCHANCE of spawning adn if there isn't another bonusship
     {

@@ -16,7 +16,7 @@
 #include "../../Controllers/GameController.h"
 #include "../../Constants.h"
 
-class SDLWindow : public Window {
+class SDLWindow : public SpaceInvaders::Window::Window {
 public:
     bool create() override ;
     void remove() override ;
@@ -36,6 +36,7 @@ private:
     SDL_Surface* screenSurface = nullptr;
     SDL_Surface* image = nullptr;
     SDL_Surface* PNGSurface = nullptr;
+    SDL_Surface* textSurface = nullptr;
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* texture = nullptr;
     TTF_Font* font= nullptr;

@@ -4,7 +4,8 @@
 
 #include "Bullet.h"
 #include "../Controllers/GameController.h"
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
+
 
 Bullet::Bullet(int xPos, int yPos, int width, int height, int direction, bool enemy) : GameObject(xPos, yPos, width,height)
 {

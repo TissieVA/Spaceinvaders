@@ -9,7 +9,7 @@
 #include <string>
 
 using namespace std;
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
 
 void SDLSprite::loadSprite()
 {

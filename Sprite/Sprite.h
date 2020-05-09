@@ -7,15 +7,22 @@
 
 #include <string>
 
-class Sprite {
-public:
-    Sprite(std::string path);
-    virtual void loadSprite()=0;
-    virtual void* dispSprite()=0;
 
-protected:
-    std::string path;
-};
+namespace SpaceInvaders::Sprites
+{
+    class Sprite
+    {
+    public:
+        Sprite(std::string path);
+
+        virtual void loadSprite() = 0;
+
+        virtual void* dispSprite() = 0;
+
+    protected:
+        std::string path;
+    };
+}
 
 
 #endif //GAME_SPRITE_H

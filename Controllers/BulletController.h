@@ -13,7 +13,7 @@
 #include <vector>
 using namespace std;
 
-namespace Controllers
+namespace SpaceInvaders::Controllers
 {
 
     class BulletController
@@ -22,7 +22,7 @@ namespace Controllers
         BulletController(Player* player);
 
         void addBullet(int xPos, int yPos,int direction,bool fromEnemy);
-        void enqueueBullets(Window* win);
+        void enqueueBullets(SpaceInvaders::Window::Window* win);
         void moveBullets(double timePast, vector<Enemy*> enemyVector, vector<BonusShip*> bonusVector);
 
         int getScore() const;

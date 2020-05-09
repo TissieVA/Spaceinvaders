@@ -3,6 +3,7 @@
 //
 
 #include "BonusShip.h"
+using namespace SpaceInvaders::GameObjects;
 
 BonusShip::BonusShip(int xPos, int yPos, int width, int height) : Enemy(xPos, yPos,width,height)
 {

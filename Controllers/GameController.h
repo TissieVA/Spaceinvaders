@@ -11,7 +11,7 @@
 #include "../GameObject/Bullet.h"
 #include "../GameObject/Health.h"
 
-namespace Controllers
+namespace SpaceInvaders::Controllers
 {
     class GameController
     {
@@ -31,10 +31,10 @@ namespace Controllers
 
         void operator=(GameController) = delete;
 
-        void setWindow(Window* setWindow)
+        void setWindow(SpaceInvaders::Window::Window* setWindow)
         { fWindow = setWindow; }
 
-        Window* getWindow()
+        SpaceInvaders::Window::Window* getWindow()
         { return fWindow; }
 
         Factories::AFactory* getFactory() const;
@@ -46,7 +46,7 @@ namespace Controllers
 
 
     private:
-        Window* fWindow;
+        SpaceInvaders::Window::Window* fWindow;
         Factories::AFactory* factory;
         Events::EventManager* eventManager;
 

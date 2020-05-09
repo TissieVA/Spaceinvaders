@@ -5,7 +5,7 @@
 #include <cmath>
 #include "Player.h"
 #include "../Controllers/GameController.h"
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
 
 Player::Player(int xpos, int ypos, int width, int height): GameObject(xpos, ypos, width, height)
 {
@@ -13,41 +13,41 @@ Player::Player(int xpos, int ypos, int width, int height): GameObject(xpos, ypos
     this->health=3;
 }
 
-void Player::KeyDown(Events::Key press) {
+void Player::KeyDown(SpaceInvaders::Events::Key press) {
     switch (press)
     {
-        case Events::Key::LEFT :
+        case SpaceInvaders::Events::Key::LEFT :
             direction= -1;
             break;
 
-        case Events::Key::RIGHT :
+        case SpaceInvaders::Events::Key::RIGHT :
             direction = 1;
             break;
 
-        case Events::NOTHING:
+        case SpaceInvaders::Events::NOTHING:
             break;
-        case Events::SPACE:
+        case SpaceInvaders::Events::SPACE:
             break;
     }
 }
 
-void Player::KeyUp(Events::Key press) {
+void Player::KeyUp(SpaceInvaders::Events::Key press) {
     switch (press)
     {
-        case Events::Key::LEFT :
+        case SpaceInvaders::Events::Key::LEFT :
             if(direction < 0)
                 direction=0;
             break;
 
-        case Events::Key::RIGHT :
+        case SpaceInvaders::Events::Key::RIGHT :
             if(direction >0)
                 direction=0;
             break;
 
-        case Events::NOTHING:
+        case SpaceInvaders::Events::NOTHING:
             break;
 
-        case Events::SPACE:
+        case SpaceInvaders::Events::SPACE:
             this->shoot=true;
             break;
     }

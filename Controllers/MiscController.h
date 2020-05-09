@@ -9,22 +9,23 @@
 #include "../Window/Window.h"
 #include "../GameObject/Health.h"
 #include "../GameObject/BonusShip.h"
+using namespace SpaceInvaders::Window;
 
-namespace Controllers
+namespace SpaceInvaders::Controllers
 
 {
     class MiscController
     {
     public:
-        MiscController(Window* win);
+        MiscController(SpaceInvaders::Window::Window* win);
         void showHealth(int health);
-        void bonus(double timepast,Window* win);
+        void bonus(double timepast,SpaceInvaders::Window::Window* win);
         void moveBonus(double timepast);
 
         const vector<BonusShip*> & getBonusVector() const;
 
     private:
-        Window* win;
+        SpaceInvaders::Window::Window* win;
         vector<Health*> hearts;
         bool moveRight =true;
         vector<BonusShip*> bonusVector;

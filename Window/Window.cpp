@@ -3,6 +3,8 @@
 //
 
 #include "Window.h"
+using namespace SpaceInvaders::GameObjects;
+using namespace SpaceInvaders::Window;
 
 void Window::enqueueGO(GameObject* gobject)
 {

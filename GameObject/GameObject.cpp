@@ -3,6 +3,7 @@
 //
 
 #include "GameObject.h"
+using namespace SpaceInvaders::GameObjects;
 
 GameObject::GameObject(double xpos, double ypos, int width, int height)
 {

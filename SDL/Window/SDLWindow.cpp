@@ -9,7 +9,7 @@
 #include <cmath>
 
 using namespace std;
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
 
 bool SDLWindow::create() {
 
@@ -53,10 +53,13 @@ bool SDLWindow::create() {
 
 void SDLWindow::remove() {
     SDL_DestroyTexture(texture);
+    SDL_DestroyTexture(text);
     texture= nullptr;
 
     SDL_DestroyRenderer(renderer);
     SDL_FreeSurface(image);
+    SDL_FreeSurface(screenSurface);
+    SDL_FreeSurface(textSurface);
     SDL_DestroyWindow(window); //destroy window
     window= nullptr;
     renderer= nullptr;
@@ -186,20 +189,20 @@ void SDLWindow::drawStretch(){
 
 void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
 
-    Events::Key key = Events::Key::NOTHING;
+    SpaceInvaders::Events::Key key = SpaceInvaders::Events::Key::NOTHING;
 
             switch (press) {
 
                 case SDLK_LEFT :
-                    key = Events::Key::LEFT;
+                    key = SpaceInvaders::Events::Key::LEFT;
                     break;
 
                 case SDLK_RIGHT :
-                    key = Events::Key::RIGHT;
+                    key = SpaceInvaders::Events::Key::RIGHT;
                     break;
 
                 case SDLK_SPACE :
-                    key = Events::Key::SPACE;
+                    key = SpaceInvaders::Events::Key::SPACE;
                     break;
             }
 
@@ -213,14 +216,15 @@ void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
             }
 }
 
-void SDLWindow::loadFromRenderedText(std::string textString, SDL_Color color)
+void SDLWindow::loadFromRenderedText(string textString, SDL_Color color)
 {
     //Get rid of preexisting texture
     //free();
 
     //Render text surface1
-    /*
-   SDL_Surface* textSurface = TTF_RenderText_Solid( font, textString.c_str(), color );
+
+   //textSurface = TTF_RenderText_Solid( font, textString.c_str(), color );
+   /*
     if( textSurface == NULL )
     {
         printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );

@@ -9,13 +9,15 @@
 #include "GameObject.h"
 #include "../Controllers/GameController.h"
 
-
-class Health : public GameObject
+namespace SpaceInvaders::GameObjects
 {
-public:
-    Health(int xPos, int yPos, int width, int height);
-    void update(double timePast) override;
-};
+    class Health : public GameObject
+    {
+    public:
+        Health(int xPos, int yPos, int width, int height);
 
+        void update(double timePast) override;
+    };
+}
 
 #endif //GAME_HEALTH_H

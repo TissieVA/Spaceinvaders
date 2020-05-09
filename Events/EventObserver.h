@@ -5,7 +5,7 @@
 #ifndef GAME_EVENTOBSERVER_H
 #define GAME_EVENTOBSERVER_H
 
-namespace Events {
+namespace SpaceInvaders::Events {
 
     enum Key{NOTHING, LEFT, RIGHT, SPACE};
 

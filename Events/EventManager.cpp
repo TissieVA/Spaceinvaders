@@ -3,22 +3,23 @@
 //
 
 #include "EventManager.h"
+using namespace SpaceInvaders::Events;
 
-Events::EventManager::~EventManager() {
+EventManager::~EventManager() {
     this->observers.clear();
 }
 
-void Events::EventManager::addObserver(Events::EventObserver *observer) {
+void EventManager::addObserver(Events::EventObserver *observer) {
     this->observers.push_back(observer); //put at the end of vector
 }
 
-void Events::EventManager::KeyDown(Events::Key press) {
+void EventManager::KeyDown(Events::Key press) {
 
     for (auto observer : observers)
         observer->KeyDown(press);
 }
 
-void Events::EventManager::KeyUp(Events::Key press) {
+void EventManager::KeyUp(Events::Key press) {
     for (auto observer : observers)
         observer->KeyUp(press);
 }

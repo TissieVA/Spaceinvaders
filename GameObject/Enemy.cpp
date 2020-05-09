@@ -4,7 +4,7 @@
 
 #include "Enemy.h"
 #include "../Controllers/GameController.h"
-using namespace Controllers;
+using namespace SpaceInvaders::Controllers;
 
 Enemy::Enemy(int xpos, int ypos, int width, int height) : GameObject(xpos, ypos, width, height)
 {

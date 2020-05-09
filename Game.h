@@ -7,7 +7,7 @@
 #include "Factories/AFactory.h"
 #include "GameObject/Enemy.h"
 
-using namespace Factories;
+using namespace SpaceInvaders::Factories;
 
 class Game {
 public:

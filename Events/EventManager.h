@@ -10,7 +10,7 @@
 
 using namespace std;
 
-namespace Events {
+namespace SpaceInvaders::Events {
     class EventManager {
     public:
         ~EventManager();

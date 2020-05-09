@@ -9,13 +9,13 @@
 #include "../../SDL/Window/SDLWindow.h"
 
 
-using namespace Factories;
+using namespace SpaceInvaders::Factories;
 
-namespace Factories {
+namespace SpaceInvaders::Factories {
 
     class SDLFactory : public AFactory {
     public:
-         Window* makeWindow() override;
+        SpaceInvaders::Window::Window* makeWindow() override;
          Sprite* makeSprite(string path) override;
     };
 }
