@@ -33,7 +33,7 @@ namespace SpaceInvaders::Text
 
         int getFontSize() const;
 
-        void setFontSize(int fontSize);
+
 
     protected:
         string text;

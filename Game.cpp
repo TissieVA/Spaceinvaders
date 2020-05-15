@@ -33,7 +33,7 @@ void Game::run() {
         auto* enCo = new EnemyController(ROWS,COLUMNS,buCo);
         auto* miscCo = new MiscController(win);
 
-        auto* testText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2), 10, 10, std::string("Assets/PressStart2P.ttf"));
+        auto* scoreText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
 
         GameController::getInstance().getEventmanager() ->addObserver(pla);
         win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
@@ -45,9 +45,9 @@ void Game::run() {
             if(pla->isShoot())
                 buCo->addBullet(lround(pla->getXpos()+pla->getWidth()/2), pla->getYpos(),-1,false);
             pla->update(timePast);
-            testText->setText("Score:"+to_string(buCo->getScore()));
+            scoreText->setText("Score:"+to_string(buCo->getScore()));
             win->enqueueGO(pla);
-            win->enqueueText(testText);
+            win->enqueueText(scoreText);
             enCo->enqueueEnemies(win);
             enCo->moveEnemies(timePast);
             miscCo->bonus(timePast,win);
@@ -56,9 +56,38 @@ void Game::run() {
             miscCo->showHealth(pla->getHealth());
 
             if(pla->getHealth()<=0)
+            {
+                gameOver = true;
                 break;
+            }
             win->draw();
         }
+
+        if(gameOver)
+        {
+            win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/GameOver.png"));
+            auto* gameOverText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(25*SCALE_Y), "Assets/PressStart2P.ttf");
+            pla->setRestart(false); //if space was hit during game, make it undone
+
+            while(!win->pollEvents())
+            {
+                restart = pla->isRestart();  //set restart tothe restart in player, if player his space restart will be true
+                gameOverText->setText("Score:"+to_string(buCo->getScore()));
+                win->enqueueText(gameOverText);
+                win->draw();
+                if(restart) //if space was hit we'll want to restart;
+                    break;
+            }
+        }
+
+
+        delete pla;
+        delete buCo;
+        delete enCo;
+        delete miscCo;
+        delete scoreText;
         win->remove();
     }
 }
+
+

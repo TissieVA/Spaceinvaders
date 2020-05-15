@@ -109,3 +109,10 @@ int BulletController::getScore() const
     return score;
 }
 
+BulletController::~BulletController()
+{
+    bulletVector.clear();
+
+}
+
+

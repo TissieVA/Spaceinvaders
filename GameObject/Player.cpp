@@ -27,6 +27,7 @@ void Player::KeyDown(SpaceInvaders::Events::Key press) {
         case SpaceInvaders::Events::NOTHING:
             break;
         case SpaceInvaders::Events::SPACE:
+            restart = true;
             break;
     }
 }
@@ -73,4 +74,14 @@ void Player::setHealth(int health)
 int Player::getHealth() const
 {
     return health;
+}
+
+bool Player::isRestart() const
+{
+    return restart;
+}
+
+void Player::setRestart(bool restart)
+{
+    Player::restart = restart;
 }

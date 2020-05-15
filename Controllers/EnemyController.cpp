@@ -25,6 +25,7 @@ void EnemyController::createEnemies()
             enemyVector.push_back(enem);
         }
     }
+    moveRight=true;
 }
 //      1       6       10
 //      2       7       11
@@ -139,7 +140,7 @@ void EnemyController::removeEnemies()
     }
 }
 
-const vector<Enemy*> &EnemyController::getEnemyVector() const
+const vector<Enemy*> EnemyController::getEnemyVector() const
 {
     return enemyVector;
 }

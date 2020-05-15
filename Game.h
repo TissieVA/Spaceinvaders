@@ -18,7 +18,8 @@ public:
 private:
     AFactory* AF;
     double timePast;
-
+    bool gameOver = false;
+    bool restart = false;
 };
 
 

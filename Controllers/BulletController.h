@@ -27,11 +27,12 @@ namespace SpaceInvaders::Controllers
 
         int getScore() const;
 
+        virtual ~BulletController();
+
     private:
         vector<Bullet*> bulletVector;
         Player* player;
         int score =0;
     };
-
 }
 #endif //GAME_BULLETCONTROLLER_H

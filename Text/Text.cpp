@@ -6,6 +6,8 @@
 
 SpaceInvaders::Text::Text::Text(string text, int x, int y, int fontSize, string font)
 {
+    this->xPos = x;
+    this->yPos = y;
     this->text = text;
     this->fontSize = fontSize;
 }
@@ -59,9 +61,4 @@ void SpaceInvaders::Text::Text::setYPos(double yPos)
 int SpaceInvaders::Text::Text::getFontSize() const
 {
     return fontSize;
-}
-
-void SpaceInvaders::Text::Text::setFontSize(int fontSize)
-{
-    Text::fontSize = fontSize;
 }

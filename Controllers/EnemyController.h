@@ -23,7 +23,8 @@ namespace SpaceInvaders::Controllers
         void moveEnemies(double timePast);
         void removeEnemies();
 
-        const vector<Enemy*> &getEnemyVector() const;
+
+        const vector<Enemy*> getEnemyVector() const;
 
     private:
         vector<Enemy*> enemyVector;

@@ -27,11 +27,16 @@ namespace SpaceInvaders::GameObjects
 
         void setHealth(int health);
 
+        bool isRestart() const;
+
+        void setRestart(bool restart);
+
     private:
         int direction = 0; // no movement
         int health = 3;
         double speed = PLAYER_SPEED;
         bool shoot = false;
+        bool restart = false;
     };
 }
 
