@@ -11,7 +11,13 @@ void Window::enqueueGO(GameObject* gobject)
     goQueue.push(gobject);
 }
 
-double Window::getTimePast() const {
+void Window::enqueueText(SpaceInvaders::Text::Text* txtObject)
+{
+    this->textQueue.push(txtObject);
+}
+
+double Window::getTimePast() const
+{
     return timePast;
 }
 

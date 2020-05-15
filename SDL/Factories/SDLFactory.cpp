@@ -4,6 +4,7 @@
 
 #include "SDLFactory.h"
 #include "../Sprite/SDLSprite.h"
+#include "../Text/SDLText.h"
 
 using namespace std;
 
@@ -18,4 +19,9 @@ Sprite* SDLFactory::makeSprite(string path)
     auto* sprite = new SDLSprite(path);
     sprite->loadSprite();
     return sprite;
+}
+
+SpaceInvaders::Text::Text* SDLFactory::makeText(string text, int x, int y, int fontSize, string font)
+{
+    return new SDLText(text, x, y, fontSize, font);
 }

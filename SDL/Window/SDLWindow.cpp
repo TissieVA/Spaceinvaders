@@ -41,9 +41,18 @@ bool SDLWindow::create() {
 
                 int imgFlags = IMG_INIT_PNG;
                 if (!(IMG_Init((imgFlags) & imgFlags)))
+                {
                     printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+                }
                 else
-                    screenSurface = SDL_GetWindowSurface(window);
+                {
+                    if(TTF_Init() == -1)
+                    {
+                        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+                    }
+                    else
+                        screenSurface = SDL_GetWindowSurface(window);
+                }
             }
         }
     }
@@ -88,8 +97,21 @@ void SDLWindow::draw() {
         stretchRectangle.w = go->getWidth();
         stretchRectangle.h = go->getHeight();
         SDL_Texture* texture = reinterpret_cast<SDL_Texture*>(go->getSprite()->dispSprite());
-        SDL_RenderCopy(renderer,texture, nullptr, &stretchRectangle);
+        SDL_RenderCopy(renderer, texture, nullptr, &stretchRectangle);
         goQueue.pop();
+    }
+
+    while(!textQueue.empty())
+    {
+        auto* text = textQueue.front();
+        SDL_Rect stretchRectangle;
+        stretchRectangle.x = lround(text->getXPos());
+        stretchRectangle.y = lround(text->getYPos());
+        stretchRectangle.w = text->getWidth();
+        stretchRectangle.h = text->getHeight();
+        SDL_Texture* texture = reinterpret_cast<SDL_Texture*>(text->display());
+        SDL_RenderCopy(renderer, texture, nullptr, &stretchRectangle);
+        textQueue.pop();
     }
 
     SDL_RenderPresent(renderer);

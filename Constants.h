@@ -7,8 +7,8 @@
 
 const int SCREEN_WIDTH_DEFAULT = 1280;
 const int SCREEN_HEIGHT_DEFAULT = 720;
-const int SCREEN_WIDTH = 1280;
-const  int SCREEN_HEIGHT = 720;
+const int SCREEN_WIDTH = 2560/2;
+const  int SCREEN_HEIGHT = 1440/2;
 const int BULLET_WIDTH = 10;
 const int BULLET_HEIGHT = 10;
 

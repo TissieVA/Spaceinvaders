@@ -8,6 +8,7 @@
 #include <string>
 #include <queue>
 #include "../GameObject/GameObject.h"
+#include "../Text/Text.h"
 
 namespace SpaceInvaders::Window
 {
@@ -33,9 +34,11 @@ namespace SpaceInvaders::Window
         virtual bool pollEvents() = 0;
 
         void enqueueGO(SpaceInvaders::GameObjects::GameObject* gobject);
+        void enqueueText(SpaceInvaders::Text::Text* txtObject);
 
     protected:
         std::queue<SpaceInvaders::GameObjects::GameObject*> goQueue;
+        std::queue<SpaceInvaders::Text::Text*> textQueue;
         double timePast;
         Sprite* background;
         Sprite* icon;

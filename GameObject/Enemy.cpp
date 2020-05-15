@@ -10,6 +10,7 @@ Enemy::Enemy(int xpos, int ypos, int width, int height) : GameObject(xpos, ypos,
 {
     this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/enemy.png");
     this->alive=true;
+    this->xDirection = 1;
 }
 
 void Enemy::update(double timepast)

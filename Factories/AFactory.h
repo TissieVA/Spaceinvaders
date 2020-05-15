@@ -18,6 +18,7 @@ namespace SpaceInvaders::Factories {
         //virtual PlayerShip* CreatePS()=0;
         virtual SpaceInvaders::Window::Window* makeWindow() =0;
         virtual Sprite* makeSprite(string path)=0;
+        virtual Text::Text* makeText(string text, int x, int y, int fontSize, string font) = 0;
     };
 }
 

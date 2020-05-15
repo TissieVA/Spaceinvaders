@@ -12,7 +12,7 @@ EnemyController::EnemyController(int rows, int columns, BulletController* buCo)
     this->rows=rows;
     this->columns=columns;
     this->buCo=buCo;
-    createEnemies();
+    //createEnemies();
 }
 
 void EnemyController::createEnemies()
@@ -46,6 +46,7 @@ void EnemyController::enqueueEnemies(SpaceInvaders::Window::Window* win)
         win->enqueueGO(enem);
         enem->update(win->getTimePast());
     }
+
 }
 
 void EnemyController::moveEnemies(double timePast)

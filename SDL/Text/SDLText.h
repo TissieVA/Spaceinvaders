@@ -12,7 +12,9 @@ using namespace std;
 class SDLText : public SpaceInvaders::Text::Text
 {
 public:
-    SDLText(string text, int x, int y, int height, int width, void* font);
+    SDLText(string text, int x, int y, int fontSize, string font);
+    virtual ~SDLText();
+    void* display() override;
 
 private:
     void createTexture() override ;

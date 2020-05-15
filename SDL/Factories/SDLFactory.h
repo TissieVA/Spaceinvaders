@@ -16,7 +16,8 @@ namespace SpaceInvaders::Factories {
     class SDLFactory : public AFactory {
     public:
         SpaceInvaders::Window::Window* makeWindow() override;
-         Sprite* makeSprite(string path) override;
+        Sprite* makeSprite(string path) override;
+        Text::Text* makeText(string text, int x, int y, int fontSize, string font);
     };
 }
 
