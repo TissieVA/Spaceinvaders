@@ -18,15 +18,19 @@ namespace SpaceInvaders::Controllers
     {
     public:
         MiscController(SpaceInvaders::Window::Window* win);
+
+        virtual ~MiscController();
+
         void showHealth(int health);
         void bonus(double timepast,SpaceInvaders::Window::Window* win);
         void moveBonus(double timepast);
+        void removeBonus();
 
         const vector<BonusShip*> & getBonusVector() const;
 
     private:
         SpaceInvaders::Window::Window* win;
-        vector<Health*> hearts;
+        vector<Health*> heartsVector;
         bool moveRight =true;
         vector<BonusShip*> bonusVector;
 

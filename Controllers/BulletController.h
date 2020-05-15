@@ -24,8 +24,11 @@ namespace SpaceInvaders::Controllers
         void addBullet(int xPos, int yPos,int direction,bool fromEnemy);
         void enqueueBullets(SpaceInvaders::Window::Window* win);
         void moveBullets(double timePast, vector<Enemy*> enemyVector, vector<BonusShip*> bonusVector);
+        void removeBullets();
 
         int getScore() const;
+
+        void setScore(int score);
 
         virtual ~BulletController();
 

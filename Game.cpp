@@ -26,6 +26,7 @@ void Game::run() {
     Window* win = AF->makeWindow();
     GameController::getInstance().setWindow(win);
     GameController::getInstance().setFactory(AF);
+    restart = false;
 
     if (win->create()) {
         auto* pla = new Player(lround(SCREEN_WIDTH/2), lround(SCREEN_HEIGHT-20*SCALE_Y-SCALE_Y*773/8), lround(SCALE_X*1267/8), lround(SCALE_Y*773/8));
@@ -58,29 +59,37 @@ void Game::run() {
             if(pla->getHealth()<=0)
             {
                 gameOver = true;
-                break;
             }
             win->draw();
-        }
 
-        if(gameOver)
-        {
-            win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/GameOver.png"));
-            auto* gameOverText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(25*SCALE_Y), "Assets/PressStart2P.ttf");
-            pla->setRestart(false); //if space was hit during game, make it undone
-
-            while(!win->pollEvents())
+            if(gameOver)
             {
-                restart = pla->isRestart();  //set restart tothe restart in player, if player his space restart will be true
-                gameOverText->setText("Score:"+to_string(buCo->getScore()));
-                win->enqueueText(gameOverText);
-                win->draw();
-                if(restart) //if space was hit we'll want to restart;
+                win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/GameOver.png"));
+                auto* gameOverText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(25*SCALE_Y), "Assets/PressStart2P.ttf");
+                pla->setRestart(false); //if space was hit during game, make it undone
+
+                while(!win->pollEvents())
+                {
+                    restart = pla->isRestart();  //set restart tothe restart in player, if player his space restart will be true
+                    gameOverText->setText("Score:"+to_string(buCo->getScore()));
+                    win->enqueueText(gameOverText);
+                    win->draw();
+                    if(restart) //if space was hit we'll want to restart;
+                        break;
+                }
+
+                gameOver = false;
+                pla->setHealth(3);
+                win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
+                enCo->removeEnemies();
+                buCo->removeBullets();
+                miscCo->removeBonus();
+                buCo->setScore(0);
+                if(!restart)
                     break;
             }
         }
-
-
+        
         delete pla;
         delete buCo;
         delete enCo;
@@ -89,5 +98,4 @@ void Game::run() {
         win->remove();
     }
 }
-
 

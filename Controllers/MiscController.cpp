@@ -13,15 +13,15 @@ MiscController::MiscController(SpaceInvaders::Window::Window* win)
 
 void MiscController::showHealth(int health)
 {
-    hearts.clear();
+    heartsVector.clear();
     for (int i = 0; i < health+1; i++)
     {
         auto* heart = new Health(lround(SCREEN_WIDTH - i * 40 * SCALE_X), lround(10 * SCALE_Y),
                 lround(30 * SCALE_X), lround(30 * SCALE_Y));
-        hearts.push_back(heart);
+        heartsVector.push_back(heart);
     }
 
-    for (auto* heart : hearts)
+    for (auto* heart : heartsVector)
     {
         win->enqueueGO(heart);
     }
@@ -64,8 +64,20 @@ void MiscController::moveBonus(double timepast)
     }
 }
 
-const vector<BonusShip*> & MiscController::getBonusVector() const{
+const vector<BonusShip*> & MiscController::getBonusVector() const
+{
 return bonusVector;
+}
+
+void MiscController::removeBonus()
+{
+    bonusVector.clear();
+}
+
+MiscController::~MiscController()
+{
+    bonusVector.clear();
+    heartsVector.clear();
 }
 
 

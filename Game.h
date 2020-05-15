@@ -13,13 +13,13 @@ class Game {
 public:
     Game(AFactory* afac );
     void run();
-    void createEnemies();
+
 
 private:
     AFactory* AF;
     double timePast;
     bool gameOver = false;
-    bool restart = false;
+    bool restart = true;
 };
 
 

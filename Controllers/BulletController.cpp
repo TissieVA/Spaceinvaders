@@ -104,6 +104,11 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
     }
 }
 
+void BulletController::removeBullets()
+{
+    bulletVector.clear();
+}
+
 int BulletController::getScore() const
 {
     return score;
@@ -114,5 +119,12 @@ BulletController::~BulletController()
     bulletVector.clear();
 
 }
+
+void BulletController::setScore(int score)
+{
+    BulletController::score = score;
+}
+
+
 
 

@@ -134,10 +134,7 @@ void EnemyController::moveEnemies(double timePast)
 
 void EnemyController::removeEnemies()
 {
-    for (auto* enem: enemyVector)
-    {
-        enemyVector.clear();
-    }
+    enemyVector.clear();
 }
 
 const vector<Enemy*> EnemyController::getEnemyVector() const
