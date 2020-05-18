@@ -4,6 +4,8 @@
 
 #include "Enemy.h"
 #include "../Controllers/GameController.h"
+#include "../Game.h"
+//#include<cmath>
 using namespace SpaceInvaders::Controllers;
 
 Enemy::Enemy(int xpos, int ypos, int width, int height) : GameObject(xpos, ypos, width, height)
@@ -16,7 +18,7 @@ Enemy::Enemy(int xpos, int ypos, int width, int height) : GameObject(xpos, ypos,
 void Enemy::update(double timepast)
 {
     if (timepast >0)
-        move(speed*xDirection*timepast*SCALE_X,yDirection*DROPDOWNAMOUNT*SCALE_Y);
+        move(speed*levelSpeed*xDirection*timepast*SCALE_X,yDirection*DROPDOWNAMOUNT*SCALE_Y);
 }
 
 void Enemy::setXDirection(int xDirection)
@@ -47,4 +49,9 @@ void Enemy::setCanShoot(bool canShoot)
 bool Enemy::isCanShoot() const
 {
     return canShoot;
+}
+
+void Enemy::setLevelSpeed(int level)
+{
+    Enemy::levelSpeed = (SPEED_MULTIPLIER+level-1)/SPEED_MULTIPLIER; //level 1 -> levelspeed =1,
 }

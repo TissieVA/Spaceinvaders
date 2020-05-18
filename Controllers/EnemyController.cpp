@@ -124,12 +124,23 @@ void EnemyController::moveEnemies(double timePast)
     } else
         printf("wrong movement: check EnemyController, move enemies");
 
-    if (hitBottom || enemyVector.empty())
+    if (hitBottom)
     {
         removeEnemies();
-        createEnemies();
+        gameOver = true;
     }
 
+    if(enemyVector.empty()) //all enemies killed
+    {
+        level ++;
+        removeEnemies();
+        createEnemies();
+
+        for(auto* enem : enemyVector)
+        {
+            enem->setLevelSpeed(level);
+        }
+    }
 }
 
 void EnemyController::removeEnemies()
@@ -141,5 +152,22 @@ const vector<Enemy*> EnemyController::getEnemyVector() const
 {
     return enemyVector;
 }
+
+bool EnemyController::isGameOver() const
+{
+    return gameOver;
+}
+
+void EnemyController::setGameOver(bool gameOver)
+{
+    EnemyController::gameOver = gameOver;
+}
+
+int EnemyController::getLevel() const
+{
+    return level;
+}
+
+
 
 

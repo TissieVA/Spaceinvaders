@@ -34,7 +34,8 @@ void Game::run() {
         auto* enCo = new EnemyController(ROWS,COLUMNS,buCo);
         auto* miscCo = new MiscController(win);
 
-        auto* scoreText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
+        auto* scoreText = AF->makeText("Score:", lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
+        auto* levelText = AF->makeText("Level:",lround(10*SCALE_X),lround(10*SCALE_Y),lround(15*SCALE_Y),"Assets/PressStart2P.ttf");
 
         GameController::getInstance().getEventmanager() ->addObserver(pla);
         win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
@@ -47,14 +48,25 @@ void Game::run() {
                 buCo->addBullet(lround(pla->getXpos()+pla->getWidth()/2), pla->getYpos(),-1,false);
             pla->update(timePast);
             scoreText->setText("Score:"+to_string(buCo->getScore()));
+            levelText->setText("Level:"+to_string(enCo->getLevel()));
+
             win->enqueueGO(pla);
             win->enqueueText(scoreText);
+            win->enqueueText(levelText);
             enCo->enqueueEnemies(win);
             enCo->moveEnemies(timePast);
             miscCo->bonus(timePast,win);
             buCo->enqueueBullets(win);
             buCo->moveBullets(timePast,enCo->getEnemyVector(),miscCo->getBonusVector());
             miscCo->showHealth(pla->getHealth());
+
+
+
+            if(enCo->isGameOver()) //if enemies has hit the bottom
+            {
+                gameOver = true; //set gameOver variable to true
+                enCo->setGameOver(false);//reset gameOver variable in enCo
+            }
 
             if(pla->getHealth()<=0)
             {
@@ -65,12 +77,12 @@ void Game::run() {
             if(gameOver)
             {
                 win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/GameOver.png"));
-                auto* gameOverText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(25*SCALE_Y), "Assets/PressStart2P.ttf");
+                auto* gameOverText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2 -100*SCALE_X), lround(10*SCALE_Y), lround(25*SCALE_Y), "Assets/PressStart2P.ttf");
                 pla->setRestart(false); //if space was hit during game, make it undone
 
                 while(!win->pollEvents())
                 {
-                    restart = pla->isRestart();  //set restart tothe restart in player, if player his space restart will be true
+                    restart = pla->isRestart();  //set restart to the restart in player, if player his space restart will be true
                     gameOverText->setText("Score:"+to_string(buCo->getScore()));
                     win->enqueueText(gameOverText);
                     win->draw();
@@ -80,6 +92,7 @@ void Game::run() {
 
                 gameOver = false;
                 pla->setHealth(3);
+                pla->setShoot(false);
                 win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
                 enCo->removeEnemies();
                 buCo->removeBullets();

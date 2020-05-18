@@ -7,7 +7,7 @@ using namespace SpaceInvaders::GameObjects;
 
 BonusShip::BonusShip(int xPos, int yPos, int width, int height) : Enemy(xPos, yPos,width,height)
 {
-    this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/greenBall.png");
+    this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/BonusShip.png");
     this->alive=true;
 }
 

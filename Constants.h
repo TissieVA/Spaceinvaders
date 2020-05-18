@@ -9,14 +9,18 @@ const int SCREEN_WIDTH_DEFAULT = 1280;
 const int SCREEN_HEIGHT_DEFAULT = 720;
 const int SCREEN_WIDTH = 2560/2;
 const  int SCREEN_HEIGHT = 1440/2;
-const int BULLET_WIDTH = 10;
-const int BULLET_HEIGHT = 10;
+const int ENEMY_BULLET_WIDTH = 15;
+const int ENEMY_BULLET_HEIGHT = 30;
+const int PLAYER_BULLET_WIDTH = 10;
+const int PLAYER_BULLET_HEIGHT = 28;
+
 
 const int PLAYER_SPEED = 500;
 const int ENEMY_SPEED = 80;
 const int ENEMY_BULLET_SPEED = 160;
 const int PLAYER_BULLET_SPEED =500;
 const int BONUSSHIP_SPEED=100;
+const int SPEED_MULTIPLIER = 5;//(SPEED_MULTIPLIER+level-1)/SPEED_MULTIPLIER -> SPEED_MULTIPLIER = how many levels before speed doubles
 
 const int CHANCE =500; //chance of the enemy shooting a bullet (lower is more chance)
 const int BONUSCHANCE =5000;

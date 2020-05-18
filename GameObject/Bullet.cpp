@@ -11,12 +11,12 @@ Bullet::Bullet(int xPos, int yPos, int width, int height, int direction, bool en
 {
     if(enemy)
     {
-        this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/redBall.png");
+        this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/EnemyBullet.png");
         this->speed = ENEMY_BULLET_SPEED;
     }
     else
     {
-        this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/greenBall.png");
+        this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/PlayerBullet.png");
         this->speed = PLAYER_BULLET_SPEED;
     }
     this->alive=true;

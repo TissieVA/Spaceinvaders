@@ -33,6 +33,7 @@ namespace SpaceInvaders::GameObjects
 
         void setCanShoot(bool canShoot);
 
+        void setLevelSpeed(int level);
 
     protected:
         bool alive;
@@ -40,7 +41,7 @@ namespace SpaceInvaders::GameObjects
         int xDirection = 0;
         int yDirection = 0;
         double speed = ENEMY_SPEED;
-
+        double levelSpeed =1;
     };
 }
 

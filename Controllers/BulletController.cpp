@@ -14,8 +14,19 @@ BulletController::BulletController(Player* player)
 
 void BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnemy)
 {
-    auto* bullet = new Bullet(xPos,yPos-lround(BULLET_HEIGHT*SCALE_Y),lround(BULLET_WIDTH*SCALE_X),lround(BULLET_HEIGHT*SCALE_Y),direction,fromEnemy);
-    bulletVector.push_back(bullet);
+    if(fromEnemy)
+    {
+        auto* bullet = new Bullet(xPos, yPos - lround(ENEMY_BULLET_HEIGHT * SCALE_Y),
+                lround(ENEMY_BULLET_WIDTH * SCALE_X), lround(ENEMY_BULLET_HEIGHT * SCALE_Y), direction, fromEnemy);
+        bulletVector.push_back(bullet);
+    }
+    else
+    {
+        auto* bullet = new Bullet(xPos, yPos - lround(PLAYER_BULLET_HEIGHT * SCALE_Y),
+                lround(PLAYER_BULLET_WIDTH * SCALE_X), lround(PLAYER_BULLET_HEIGHT * SCALE_Y), direction, fromEnemy);
+        bulletVector.push_back(bullet);
+    }
+
 }
 
 void BulletController::enqueueBullets(SpaceInvaders::Window::Window* win)
@@ -52,7 +63,7 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
                         if(enem->isCanShoot()) //can only kill lowest in a column
                         {
                             enem->setAlive(false);
-                            score += (SCREEN_HEIGHT - enem->getYpos());
+                            score += lround((SCREEN_HEIGHT - enem->getYpos())/5);
                         }
                         bullet->setAlive(false);
 
@@ -72,7 +83,7 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
 
                         bonus->setAlive(false);
                         bullet->setAlive(false);
-                        score = score + (SCREEN_HEIGHT-bonus->getYpos());
+                        score += 1000;
                         if(player->getHealth()<MAX_HEALTH)
                             player->setHealth(player->getHealth()+1);  //if bonusship is hit, get extra live
                         break; //enemy hit

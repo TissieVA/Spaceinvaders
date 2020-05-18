@@ -26,11 +26,19 @@ namespace SpaceInvaders::Controllers
 
         const vector<Enemy*> getEnemyVector() const;
 
+        bool isGameOver() const;
+
+        void setGameOver(bool gameOver);
+
+        int getLevel() const;
+
     private:
         vector<Enemy*> enemyVector;
         bool moveRight=true;
         int rows;
         int columns;
+        bool gameOver = false;
+        int level = 0;
         BulletController* buCo;
     };
 

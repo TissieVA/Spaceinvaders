@@ -23,6 +23,8 @@ namespace SpaceInvaders::GameObjects
 
         bool isShoot() const;
 
+        void setShoot(bool shoot);
+
         int getHealth() const;
 
         void setHealth(int health);

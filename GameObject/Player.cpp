@@ -27,7 +27,7 @@ void Player::KeyDown(SpaceInvaders::Events::Key press) {
         case SpaceInvaders::Events::NOTHING:
             break;
         case SpaceInvaders::Events::SPACE:
-            restart = true;
+
             break;
     }
 }
@@ -50,6 +50,7 @@ void Player::KeyUp(SpaceInvaders::Events::Key press) {
 
         case SpaceInvaders::Events::SPACE:
             this->shoot=true;
+            restart = true;
             break;
     }
 }
@@ -64,6 +65,11 @@ void Player::update(double timePast) {
 bool Player::isShoot() const
 {
     return shoot;
+}
+
+void Player::setShoot(bool shoot)
+{
+    Player::shoot = shoot;
 }
 
 void Player::setHealth(int health)
@@ -85,3 +91,4 @@ void Player::setRestart(bool restart)
 {
     Player::restart = restart;
 }
+
