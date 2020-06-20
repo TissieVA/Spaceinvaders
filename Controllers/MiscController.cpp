@@ -31,7 +31,7 @@ void MiscController::bonus(double timepast, SpaceInvaders::Window::Window* win)
 {
     if(rand() %BONUSCHANCE +1 ==1 && bonusVector.empty()) //1 in BONUSCHANCE of spawning and if there isn't another bonusship
     {
-        auto* bonusship = new BonusShip(-lround(SCALE_X*200),lround(100*SCALE_Y),lround(SCALE_X*200),lround(SCALE_Y*100));
+        auto* bonusship = new BonusShip(-lround(SCALE_X*BONUSSHIP_WIDTH),lround(BONUSSHIP_WIDTH*SCALE_Y),lround(SCALE_X*BONUSSHIP_WIDTH),lround(SCALE_Y*BONUSSHIP_HEIGHT));
 
         bonusVector.push_back(bonusship);
         win->enqueueGO(bonusship);
