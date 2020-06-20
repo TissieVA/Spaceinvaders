@@ -10,13 +10,13 @@ EventManager::~EventManager() {
 }
 
 void EventManager::addObserver(Events::EventObserver *observer) {
-    this->observers.push_back(observer); //put at the end of vector
+    this->observers.push_back(observer);
 }
 
 void EventManager::KeyDown(Events::Key press) {
 
     for (auto observer : observers)
-        observer->KeyDown(press);
+        observer->KeyDown(press);  //tell
 }
 
 void EventManager::KeyUp(Events::Key press) {

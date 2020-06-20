@@ -129,18 +129,47 @@ bool SDLWindow::pollEvents() {
     SDL_Event ev;
     while( SDL_PollEvent(&ev) != 0)
     {
-        if(ev.type == SDL_QUIT)
+        if(ev.type == SDL_QUIT) //is window is closed
             return true;
-        else if (ev.type == SDL_KEYDOWN)
+        else if (ev.type == SDL_KEYDOWN) //if key pressed
         {
-            if(ev.key.keysym.sym == SDL_KeyCode::SDLK_ESCAPE)
+            if(ev.key.keysym.sym == SDL_KeyCode::SDLK_ESCAPE) //if escape button is pressed
                 return true;
-            KeyEvent(ev.key.keysym.sym, true);
+            KeyEvent(ev.key.keysym.sym, true); //go to keyEvent
         }
         else if (ev.type == SDL_KEYUP)
             KeyEvent(ev.key.keysym.sym,false);
     }
     return false;
+}
+
+void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
+
+    SpaceInvaders::Events::Key key = SpaceInvaders::Events::Key::NOTHING;
+
+    switch (press) { //check which is is been pressed and set to key
+
+        case SDLK_LEFT :
+            key = SpaceInvaders::Events::Key::LEFT;
+            break;
+
+        case SDLK_RIGHT :
+            key = SpaceInvaders::Events::Key::RIGHT;
+            break;
+
+        case SDLK_SPACE :
+            key = SpaceInvaders::Events::Key::SPACE;
+            break;
+    }
+
+    if (pressed)
+    {
+        GameController::getInstance().getEventmanager()->KeyDown(key); //send key to eventmanager methods keydown
+    }
+    else
+    {
+        GameController::getInstance().getEventmanager()->KeyUp(key);  //send key to eventmanager methods keyup
+    }
 }
 
 void SDLWindow::loadSurface(string path) {
@@ -209,34 +238,7 @@ void SDLWindow::drawStretch(){
     SDL_UpdateWindowSurface( window );
     }
 
-void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
 
-    SpaceInvaders::Events::Key key = SpaceInvaders::Events::Key::NOTHING;
-
-            switch (press) {
-
-                case SDLK_LEFT :
-                    key = SpaceInvaders::Events::Key::LEFT;
-                    break;
-
-                case SDLK_RIGHT :
-                    key = SpaceInvaders::Events::Key::RIGHT;
-                    break;
-
-                case SDLK_SPACE :
-                    key = SpaceInvaders::Events::Key::SPACE;
-                    break;
-            }
-
-            if (pressed)
-            {
-                GameController::getInstance().getEventmanager()->KeyDown(key);
-            }
-            else
-            {
-                GameController::getInstance().getEventmanager()->KeyUp(key);
-            }
-}
 
 
 
