@@ -12,7 +12,6 @@ EnemyController::EnemyController(int rows, int columns, BulletController* buCo)
     this->rows=rows;
     this->columns=columns;
     this->buCo=buCo;
-    //createEnemies();
 }
 
 void EnemyController::createEnemies()
@@ -20,8 +19,8 @@ void EnemyController::createEnemies()
     for (int j = 0; j < columns; ++j) {
 
         for (int i = 0; i < rows; ++i) {
-            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * j)), lround(50*SCALE_Y+ SCALE_Y * (10+(100*i))), lround(SCALE_X*200/2.5),
-                                   lround(SCALE_Y*185/2.5));
+            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * j)), lround(90*SCALE_Y+ SCALE_Y * (10+(100*i))), lround(SCALE_X*ENEMY_WIDTH),
+                                   lround(SCALE_Y*ENEMY_HEIGHT));
             enemyVector.push_back(enem);
         }
     }
@@ -42,12 +41,10 @@ void EnemyController::enqueueEnemies(SpaceInvaders::Window::Window* win)
             enemyVector.erase(enemyVector.begin()+i);  //removes dead enemies from vector
     }
 
-    for (auto* enem:enemyVector)
+    for (auto* enem:enemyVector) //enqueue the enemies and move them
     {
         win->enqueueGO(enem);
-        enem->update(win->getTimePast());
     }
-
 }
 
 void EnemyController::moveEnemies(double timePast)
@@ -69,10 +66,11 @@ void EnemyController::moveEnemies(double timePast)
 
     }
 
-    for (auto* enem: enemyVector)
+    for (auto* enem: enemyVector) //check direction, hit bottom or can shoot
     {
         if (enem->getXpos() <= 0)
             moveRight=true;
+
         else if (enem->getXpos()+enem->getWidth() >= SCREEN_WIDTH)
             moveRight= false;
 

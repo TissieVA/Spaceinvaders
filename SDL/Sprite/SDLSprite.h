@@ -18,7 +18,7 @@ public:
     SDLSprite(string path):Sprite(path){};
 
     void loadSprite() override;
-    void *dispSprite() override;
+    void* dispSprite() override;
 
 private:
     SDL_Texture* texture;

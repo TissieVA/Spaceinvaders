@@ -14,7 +14,7 @@ using namespace SpaceInvaders::Controllers;
 bool SDLWindow::create() {
 
     bool succes=true;
-    string title = "SDL test";
+    string title = "Space Invaders";
 
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
@@ -81,7 +81,7 @@ void SDLWindow::draw() {
     uint32_t ticks = SDL_GetTicks();
 
 
-   //SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon));
+   SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon->dispIcon()));
 
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, reinterpret_cast<SDL_Texture*>(background->dispSprite()), nullptr, nullptr);
@@ -238,33 +238,6 @@ void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
             }
 }
 
-void SDLWindow::loadFromRenderedText(string textString, SDL_Color color)
-{
-    //Get rid of preexisting texture
-    //free();
-
-    //Render text surface1
-
-   //textSurface = TTF_RenderText_Solid( font, textString.c_str(), color );
-   /*
-    if( textSurface == NULL )
-    {
-        printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
-    }
-    else
-    {
-        //Create texture from surface pixels
-        text = SDL_CreateTextureFromSurface( renderer, textSurface );
-        if( text == NULL )
-        {
-            printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
-        }
-
-
-        //Get rid of old surface
-        SDL_FreeSurface( textSurface );
-    }*/
-}
 
 
 

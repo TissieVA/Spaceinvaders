@@ -5,6 +5,7 @@
 #include "SDLFactory.h"
 #include "../Sprite/SDLSprite.h"
 #include "../Text/SDLText.h"
+#include "../Icon/SDLIcon.h"
 
 using namespace std;
 
@@ -25,3 +26,11 @@ SpaceInvaders::Text::Text* SDLFactory::makeText(string text, int x, int y, int f
 {
     return new SDLText(text, x, y, fontSize, font);
 }
+
+SpaceInvaders::Icon::Icon* SDLFactory::makeIcon(string path)
+{
+    auto* icon = new SDLIcon(path);
+    icon->loadIcon();
+    return icon;
+}
+

@@ -16,7 +16,7 @@ void BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnem
 {
     if(fromEnemy)
     {
-        auto* bullet = new Bullet(xPos, yPos - lround(ENEMY_BULLET_HEIGHT * SCALE_Y),
+        auto* bullet = new Bullet(xPos, yPos + lround(ENEMY_BULLET_HEIGHT * SCALE_Y) +10,
                 lround(ENEMY_BULLET_WIDTH * SCALE_X), lround(ENEMY_BULLET_HEIGHT * SCALE_Y), direction, fromEnemy);
         bulletVector.push_back(bullet);
     }
@@ -31,14 +31,14 @@ void BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnem
 
 void BulletController::enqueueBullets(SpaceInvaders::Window::Window* win)
 {
-    for (int i=0; i< bulletVector.size(); i++)
+    for (int i=0; i< bulletVector.size(); i++) //check which bullets in vector are alive and remove the ones that aren't
     {
         auto* bullet =bulletVector.at(i);
         if(!bullet->isAlive())
-            bulletVector.erase(bulletVector.begin()+i); //remove bullet that had hit something
+            bulletVector.erase(bulletVector.begin()+i); //remove bullet that has hit something
     }
 
-    for (auto* bullet :bulletVector)
+    for (auto* bullet :bulletVector) //enqueue the remaining bullets
     {
         win->enqueueGO(bullet);
     }
@@ -62,16 +62,16 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
                         //hit with an enemy
                         if(enem->isCanShoot()) //can only kill lowest in a column
                         {
-                            enem->setAlive(false);
-                            score += lround((SCREEN_HEIGHT - enem->getYpos())/5);
+                            enem->setAlive(false); //set enemy to dead
+                            score += lround((SCREEN_HEIGHT - enem->getYpos())/5); //higher score if enemy is at top of screen
                         }
-                        bullet->setAlive(false);
+                        bullet->setAlive(false); //set bullet to dead
 
                         break; //enemy hit
                     }
                 }
             }
-            for (auto* bonus : bonusVector)
+            for (auto* bonus : bonusVector) //check if bonusship is hit
             {
                 if (bullet->getXpos() + (bullet->getWidth() / 2) > bonus->getXpos() &&
                     bullet->getXpos() + (bullet->getWidth() / 2) < bonus->getXpos() +
@@ -93,23 +93,23 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
         }
         else if (bullet->getDirection()>0) //coming from enemy
         {
-            if ((bullet->getYpos() + bullet->getHeight() >= player->getYpos()))
+            if ((bullet->getYpos() + bullet->getHeight() >= player->getYpos())) //if tip of bullet is lower then top of player (inverse for values)
             {
                 if (lround(bullet->getXpos() + bullet->getWidth() / 2) >= player->getXpos()
                     && lround(bullet->getXpos() + bullet->getWidth() / 2) <=
                        player->getXpos() + player->getWidth()) //if bullet is inside player
                 {
                     player->setHealth(player->getHealth() - 1); //reduce health with one
-                    bullet->setAlive(false);
+                    bullet->setAlive(false); //kill bullet
                 }
             }
 
         }
 
-        if(bullet->getYpos() <= 0 || bullet->getYpos()+bullet->getHeight()>= SCREEN_HEIGHT)
+        if(bullet->getYpos() <= 0 || bullet->getYpos()+bullet->getHeight()>= SCREEN_HEIGHT) //kill bullet if it has hit the bottom or top
             bullet->setAlive(false);
 
-        bullet->update(timePast);
+        bullet->update(timePast); //move bullet
 
 
     }
@@ -125,16 +125,18 @@ int BulletController::getScore() const
     return score;
 }
 
+void BulletController::setScore(int score)
+{
+    BulletController::score = score;
+}
+
 BulletController::~BulletController()
 {
     bulletVector.clear();
 
 }
 
-void BulletController::setScore(int score)
-{
-    BulletController::score = score;
-}
+
 
 
 

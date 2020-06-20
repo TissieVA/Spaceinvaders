@@ -3,8 +3,10 @@
 //
 
 #include "Window.h"
+
 using namespace SpaceInvaders::GameObjects;
 using namespace SpaceInvaders::Window;
+using namespace SpaceInvaders::Icon;
 
 void Window::enqueueGO(GameObject* gobject)
 {
@@ -23,10 +25,13 @@ double Window::getTimePast() const
 
 void Window::setBackground(Sprite* background)
 {
-    Window::background = background;
+   this->background = background;
 }
 
-void Window::setIcon(Sprite* icon)
+void Window::setIcon(Icon::Icon* icon)
 {
-    this->icon = icon;
+    this->icon= icon;
 }
+
+
+

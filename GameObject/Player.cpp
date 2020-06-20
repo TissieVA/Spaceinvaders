@@ -10,7 +10,7 @@ using namespace SpaceInvaders::Controllers;
 Player::Player(int xpos, int ypos, int width, int height): GameObject(xpos, ypos, width, height)
 {
     this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/spaceship.png");
-    this->health=3;
+    this->health=START_HEALTH;
 }
 
 void Player::KeyDown(SpaceInvaders::Events::Key press) {

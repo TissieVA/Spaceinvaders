@@ -23,48 +23,50 @@ Game::Game(AFactory *afac) {
 
 void Game::run() {
 
-    Window* win = AF->makeWindow();
+    Window* win = AF->makeWindow(); //create a window
     GameController::getInstance().setWindow(win);
     GameController::getInstance().setFactory(AF);
     restart = false;
 
     if (win->create()) {
-        auto* pla = new Player(lround(SCREEN_WIDTH/2), lround(SCREEN_HEIGHT-20*SCALE_Y-SCALE_Y*773/8), lround(SCALE_X*1267/8), lround(SCALE_Y*773/8));
-        auto* buCo = new BulletController(pla);
-        auto* enCo = new EnemyController(ROWS,COLUMNS,buCo);
-        auto* miscCo = new MiscController(win);
+        auto* pla = new Player(lround(SCREEN_WIDTH/2), lround(SCREEN_HEIGHT-20*SCALE_Y-SCALE_Y*773/8), lround(SCALE_X*1267/8), lround(SCALE_Y*773/8)); //create player
+        auto* buCo = new BulletController(pla); //create bullet controller
+        auto* enCo = new EnemyController(ROWS,COLUMNS,buCo); //create enemycontroller + enemies are created here
+        auto* miscCo = new MiscController(win); //create miscellaneous controller (health, bonusship)
 
         auto* scoreText = AF->makeText("Score:", lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
         auto* levelText = AF->makeText("Level:",lround(10*SCALE_X),lround(10*SCALE_Y),lround(15*SCALE_Y),"Assets/PressStart2P.ttf");
 
-        GameController::getInstance().getEventmanager() ->addObserver(pla);
-        win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
-        //win->setIcon(GameController::getInstance().getFactory()->makeSprite("Assets/spaceshipIcon.png"));
+        GameController::getInstance().getEventmanager() ->addObserver(pla); //adding the player as an observer
 
-        while (!win->pollEvents())
+        win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
+        win->setIcon(GameController::getInstance().getFactory()->makeIcon("Assets/spaceshipIcon.png"));
+
+        while (!win->pollEvents()) //while escape hasn't been touched
         {
-            timePast=win->getTimePast();
-            if(pla->isShoot())
+            timePast = win->getTimePast(); //get time it took to create a frame
+            if(pla->isShoot()) //if player has hit spacebar
                 buCo->addBullet(lround(pla->getXpos()+pla->getWidth()/2), pla->getYpos(),-1,false);
-            pla->update(timePast);
+            pla->update(timePast); //move player in relation to the time
             scoreText->setText("Score:"+to_string(buCo->getScore()));
             levelText->setText("Level:"+to_string(enCo->getLevel()));
 
-            win->enqueueGO(pla);
-            win->enqueueText(scoreText);
+            win->enqueueGO(pla);          //set player in a list to be shown on screen
+            win->enqueueText(scoreText);  //set text to be shown on screen
             win->enqueueText(levelText);
-            enCo->enqueueEnemies(win);
-            enCo->moveEnemies(timePast);
-            miscCo->bonus(timePast,win);
-            buCo->enqueueBullets(win);
-            buCo->moveBullets(timePast,enCo->getEnemyVector(),miscCo->getBonusVector());
-            miscCo->showHealth(pla->getHealth());
+            enCo->enqueueEnemies(win);   //set all the enemies to be shown on screen (in EnemyController)
+            buCo->enqueueBullets(win);   //set bullets to be shown on screen
 
+            enCo->moveEnemies(timePast);
+            miscCo->bonus(timePast,win); //try to spawn bonusship
+
+            buCo->moveBullets(timePast,enCo->getEnemyVector(),miscCo->getBonusVector()); //move bullets (if not hit) according to time
+            miscCo->showHealth(pla->getHealth()); //set health to be shown non screen
 
 
             if(enCo->isGameOver()) //if enemies has hit the bottom
             {
-                gameOver = true; //set gameOver variable to true
+                gameOver = true;
                 enCo->setGameOver(false);//reset gameOver variable in enCo
             }
 
@@ -72,43 +74,44 @@ void Game::run() {
             {
                 gameOver = true;
             }
-            win->draw();
+
+            win->draw(); //draw everything that has been queued
 
             if(gameOver)
             {
-                win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/GameOver.png"));
+                win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/GameOver.png")); //set background to gameover background
                 auto* gameOverText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2 -100*SCALE_X), lround(10*SCALE_Y), lround(25*SCALE_Y), "Assets/PressStart2P.ttf");
-                pla->setRestart(false); //if space was hit during game, make it undone
+                pla->setRestart(false); //space hit during game won't count
 
-                while(!win->pollEvents())
+                while(!win->pollEvents()) //while escape isn't hit
                 {
-                    restart = pla->isRestart();  //set restart to the restart in player, if player his space restart will be true
-                    gameOverText->setText("Score:"+to_string(buCo->getScore()));
-                    win->enqueueText(gameOverText);
-                    win->draw();
-                    if(restart) //if space was hit we'll want to restart;
+                    restart = pla->isRestart();                                       //set restart to the restart in player, if player hits space restart will be true
+                    gameOverText->setText("Score:"+to_string(buCo->getScore())); //set gameovertext as text to the score the player got
+                    win->enqueueText(gameOverText);                                   //set text to be shown on screen
+                    win->draw();                                                      //draw background and score
+                    if(restart)                                                       //if space was hit we'll want to restart;
                         break;
                 }
 
-                gameOver = false;
-                pla->setHealth(3);
-                pla->setShoot(false);
-                win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
+                gameOver = false;             //set gameover back to false
+                pla->setHealth(START_HEALTH); //reset player health
+                pla->setShoot(false);   //set shoot to false, otherwise the space of restart will be counted as a bullet shot
+                win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png")); //set background back to game background
                 enCo->removeEnemies();
                 buCo->removeBullets();
                 miscCo->removeBonus();
-                buCo->setScore(0);
-                if(!restart)
-                    break;
+                buCo->setScore(0); //reset score
+                if(!restart)             // if we got out of gamover pollevents but not because of restart -> because of escape button-> stop game
+                    break;               //go out of pollevent loop
             }
         }
         
-        delete pla;
+        delete pla; //delete everything
         delete buCo;
         delete enCo;
         delete miscCo;
         delete scoreText;
-        win->remove();
+        win->remove(); //remove window
     }
 }
 

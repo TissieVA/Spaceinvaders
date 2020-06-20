@@ -9,6 +9,7 @@
 #include <queue>
 #include "../GameObject/GameObject.h"
 #include "../Text/Text.h"
+#include "../Icon/Icon.h"
 
 namespace SpaceInvaders::Window
 {
@@ -29,7 +30,7 @@ namespace SpaceInvaders::Window
 
         void setBackground(Sprite* background);
 
-        void setIcon(Sprite* icon);
+        void setIcon(Icon::Icon* icon);
 
         virtual bool pollEvents() = 0;
 
@@ -41,7 +42,7 @@ namespace SpaceInvaders::Window
         std::queue<SpaceInvaders::Text::Text*> textQueue;
         double timePast;
         Sprite* background;
-        Sprite* icon;
+        Icon::Icon* icon;
     public:
         double getTimePast() const;
 

@@ -25,7 +25,7 @@ public:
     void drawStretch() override;
     void loadSurface(std::string path);
     void loadTexture(std::string path);
-    void loadFromRenderedText(std::string textString, SDL_Color color);
+
 
     SDL_Renderer* getRenderer(){return renderer;}
     void KeyEvent(SDL_Keycode press, bool pressed);
