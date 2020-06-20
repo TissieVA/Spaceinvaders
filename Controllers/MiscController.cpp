@@ -27,7 +27,7 @@ void MiscController::showHealth(int health) //sets the amounts of heart icons to
     }
 }
 
-void MiscController::bonus(double timepast, SpaceInvaders::Window::Window* win)
+void MiscController::bonus(double timepast, SpaceInvaders::Window::Window* win) 
 {
     if(rand() %BONUSCHANCE +1 ==1 && bonusVector.empty()) //1 in BONUSCHANCE of spawning and if there isn't another bonusship
     {
@@ -44,7 +44,7 @@ void MiscController::bonus(double timepast, SpaceInvaders::Window::Window* win)
             bonusVector.erase(bonusVector.begin()+i);  //removes dead enemies from vector
     }
 
-    for (auto* bonus:bonusVector) 
+    for (auto* bonus:bonusVector)
     {
         win->enqueueGO(bonus);
         bonus->update(win->getTimePast());
