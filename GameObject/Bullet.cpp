@@ -9,7 +9,7 @@ using namespace SpaceInvaders::Controllers;
 
 Bullet::Bullet(int xPos, int yPos, int width, int height, int direction, bool enemy) : GameObject(xPos, yPos, width,height)
 {
-    if(enemy)
+    if(enemy) //if from enemy, the sprite and speed is different
     {
         this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/EnemyBullet.png");
         this->speed = ENEMY_BULLET_SPEED;
@@ -26,7 +26,7 @@ Bullet::Bullet(int xPos, int yPos, int width, int height, int direction, bool en
 void Bullet::update(double timePast)
 {
     if (timePast > 0)
-        move(0,direction*speed*timePast*SCALE_Y);
+        move(0,direction*speed*timePast*SCALE_Y); //move amount timepast times speed
 }
 
 

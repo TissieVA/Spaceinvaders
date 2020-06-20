@@ -16,12 +16,12 @@ void EventManager::addObserver(Events::EventObserver *observer) {
 void EventManager::KeyDown(Events::Key press) {
 
     for (auto observer : observers)
-        observer->KeyDown(press);  //tell
+        observer->KeyPressedDown(press);  //method of oberver, in our case player who is an eventobserver
 }
 
 void EventManager::KeyUp(Events::Key press) {
     for (auto observer : observers)
-        observer->KeyUp(press);
+        observer->KeyPressedUp(press);
 }
 
 

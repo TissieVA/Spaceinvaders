@@ -13,7 +13,7 @@ Player::Player(int xpos, int ypos, int width, int height): GameObject(xpos, ypos
     this->health=START_HEALTH;
 }
 
-void Player::KeyDown(SpaceInvaders::Events::Key press) {
+void Player::KeyPressedDown(SpaceInvaders::Events::Key press) {
     switch (press)
     {
         case SpaceInvaders::Events::Key::LEFT :
@@ -32,7 +32,7 @@ void Player::KeyDown(SpaceInvaders::Events::Key press) {
     }
 }
 
-void Player::KeyUp(SpaceInvaders::Events::Key press) {
+void Player::KeyPressedUp(SpaceInvaders::Events::Key press) {
     switch (press)
     {
         case SpaceInvaders::Events::Key::LEFT :

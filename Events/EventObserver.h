@@ -11,9 +11,9 @@ namespace SpaceInvaders::Events {
 
     class EventObserver{
     public:
-        virtual void KeyDown(Key press) {};
+        virtual void KeyPressedDown(Key press) {};
 
-        virtual void KeyUp(Key press) {};
+        virtual void KeyPressedUp(Key press) {};
     };
 }
 

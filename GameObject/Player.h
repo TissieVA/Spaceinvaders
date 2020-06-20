@@ -15,9 +15,9 @@ namespace SpaceInvaders::GameObjects
     public:
         Player(int xpos, int ypos, int width, int height);
 
-        void KeyUp(SpaceInvaders::Events::Key press) override;
+        void KeyPressedUp(SpaceInvaders::Events::Key press) override;
 
-        void KeyDown(SpaceInvaders::Events::Key press) override;
+        void KeyPressedDown(SpaceInvaders::Events::Key press) override;
 
         void update(double timePast) override;
 
