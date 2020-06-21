@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 2/03/2020.
+// Created by Tijs Van Alphen on 2/03/2020.
 //
 
 #ifndef GAME_SDLFACTORY_H
@@ -11,14 +11,14 @@
 
 using namespace SpaceInvaders::Factories;
 
-namespace SpaceInvaders::Factories {
+namespace SDL::Factories {
 
     class SDLFactory : public AFactory {
     public:
-        SpaceInvaders::Window::Window* makeWindow() override;
-        Sprite* makeSprite(string path) override;
-        Text::Text* makeText(string text, int x, int y, int fontSize, string font);
-        Icon::Icon* makeIcon(string path) override;
+        SpaceInvaders::Window* makeWindow() override;
+        SpaceInvaders::Sprite* makeSprite(string path) override;
+        SpaceInvaders::Text* makeText(string text, int x, int y, int fontSize, string font);
+        SpaceInvaders::Icon* makeIcon(string path) override;
     };
 }
 

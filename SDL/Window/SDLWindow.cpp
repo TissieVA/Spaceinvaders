@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 28/02/2020.
+// Created by Tijs Van Alphen on 28/02/2020.
 //
 
 #include "SDLWindow.h"
@@ -11,7 +11,7 @@
 using namespace std;
 using namespace SpaceInvaders::Controllers;
 
-bool SDLWindow::create() {
+bool SDL::SDLWindow::create() {
 
     bool succes=true;
     string title = "Space Invaders";
@@ -60,7 +60,7 @@ bool SDLWindow::create() {
     return succes; //We want 0 back if everything went normal
 }
 
-void SDLWindow::remove() {
+void SDL::SDLWindow::remove() {
     SDL_DestroyTexture(texture);
     SDL_DestroyTexture(text);
     texture= nullptr;
@@ -76,7 +76,7 @@ void SDLWindow::remove() {
     SDL_Quit();
 }
 
-void SDLWindow::draw() {
+void SDL::SDLWindow::draw() {
 
     uint32_t ticks = SDL_GetTicks();
 
@@ -125,7 +125,7 @@ void SDLWindow::draw() {
     stopwatch =SDL_GetTicks();
 }
 
-bool SDLWindow::pollEvents() {
+bool SDL::SDLWindow::pollEvents() {
 
     SDL_Event ev;
     while( SDL_PollEvent(&ev) != 0)
@@ -144,7 +144,7 @@ bool SDLWindow::pollEvents() {
     return false;
 }
 
-void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
+void SDL::SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
 
     SpaceInvaders::Events::Key key = SpaceInvaders::Events::Key::NOTHING;
 

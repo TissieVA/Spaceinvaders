@@ -13,7 +13,7 @@ GameObject::GameObject(double xpos, double ypos, int width, int height)
     this->width=width;
 }
 
-Sprite *GameObject::getSprite() const {
+SpaceInvaders::Sprite *GameObject::getSprite() const {
     return sprite;
 }
 

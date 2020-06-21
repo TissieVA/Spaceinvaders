@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 9/04/2020.
+// Created by Tijs Van Alphen on 9/04/2020.
 //
 
 #include <cmath>
@@ -32,7 +32,7 @@ void EnemyController::createEnemies()
 //      5       9       13   etc.
 
 
-void EnemyController::enqueueEnemies(SpaceInvaders::Window::Window* win)
+void EnemyController::enqueueEnemies(SpaceInvaders::Window* win)
 {
     for(int i=0; i<enemyVector.size() ;i++)
     {

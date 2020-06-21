@@ -23,7 +23,7 @@ namespace SpaceInvaders::Controllers
         BulletController(Player* player);
 
         void addBullet(int xPos, int yPos,int direction,bool fromEnemy);
-        void enqueueBullets(SpaceInvaders::Window::Window* win);
+        void enqueueBullets(SpaceInvaders::Window* win);
         void moveBullets(double timePast, vector<Enemy*> enemyVector, vector<BonusShip*> bonusVector, vector<Cover*> coverVector);
         void removeBullets();
 

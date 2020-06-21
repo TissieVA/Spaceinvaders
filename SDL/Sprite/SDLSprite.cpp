@@ -11,7 +11,7 @@
 using namespace std;
 using namespace SpaceInvaders::Controllers;
 
-void SDLSprite::loadSprite()
+void SDL::SDLSprite::loadSprite()
 {
     SDL_Surface* loadedSurface= IMG_Load(path.c_str());
 
@@ -30,7 +30,7 @@ void SDLSprite::loadSprite()
     }
 }
 
-void* SDLSprite::dispSprite()
+void* SDL::SDLSprite::dispSprite()
 {
     return texture;
 }

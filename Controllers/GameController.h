@@ -31,10 +31,10 @@ namespace SpaceInvaders::Controllers
 
         void operator=(GameController) = delete;
 
-        void setWindow(SpaceInvaders::Window::Window* setWindow)
+        void setWindow(SpaceInvaders::Window* setWindow)
         { fWindow = setWindow; }
 
-        SpaceInvaders::Window::Window* getWindow()
+        SpaceInvaders::Window* getWindow()
         { return fWindow; }
 
         Factories::AFactory* getFactory() const;
@@ -46,7 +46,7 @@ namespace SpaceInvaders::Controllers
 
 
     private:
-        SpaceInvaders::Window::Window* fWindow;
+        SpaceInvaders::Window* fWindow;
         Factories::AFactory* factory;
         Events::EventManager* eventManager;
 

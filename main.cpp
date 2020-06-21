@@ -7,7 +7,7 @@
 using namespace SpaceInvaders::Factories;
 
 int main (int argc, char *argv[]) {
-    AFactory* AF = new SDLFactory();
+    AFactory* AF = new SDL::Factories::SDLFactory();
     Game* G = new Game(AF);
     G->run();
     return 0;

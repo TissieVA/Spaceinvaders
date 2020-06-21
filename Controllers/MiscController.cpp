@@ -6,7 +6,7 @@
 #include "MiscController.h"
 using namespace SpaceInvaders::Controllers;
 
-MiscController::MiscController(SpaceInvaders::Window::Window* win)
+MiscController::MiscController(SpaceInvaders::Window* win)
 {
     this->win=win;
 }
@@ -30,7 +30,7 @@ void MiscController::showHealth(int health) //sets the amounts of heart icons to
     }
 }
 
-void MiscController::bonus(double timepast, SpaceInvaders::Window::Window* win)
+void MiscController::bonus(double timepast, SpaceInvaders::Window* win)
 {
     if(rand() %BONUSCHANCE +1 ==1 && bonusVector.empty()) //1 in BONUSCHANCE of spawning and if there isn't another bonusship
     {
@@ -125,7 +125,7 @@ void MiscController::createCover()
 
 }
 
-void MiscController::enqueueCover(SpaceInvaders::Window::Window* win)
+void MiscController::enqueueCover(SpaceInvaders::Window* win)
 {
     for(int i=0; i<coverVector.size(); i++)
     {

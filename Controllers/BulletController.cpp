@@ -30,7 +30,7 @@ void BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnem
 
 }
 
-void BulletController::enqueueBullets(SpaceInvaders::Window::Window* win)
+void BulletController::enqueueBullets(SpaceInvaders::Window* win)
 {
     for (int i=0; i< bulletVector.size(); i++) //check which bullets in vector are alive and remove the ones that aren't
     {

@@ -4,7 +4,7 @@
 
 #include "Icon.h"
 
-SpaceInvaders::Icon::Icon::Icon(std::string path)
+SpaceInvaders::Icon::Icon(std::string path)
 {
     this->path = path;
 }

@@ -1,39 +1,37 @@
 //
-// Created by tijsv on 28/02/2020.
+// Created by Tijs Van Alphen on 28/02/2020.
 //
 
 #include "Window.h"
 
 using namespace SpaceInvaders::GameObjects;
-using namespace SpaceInvaders::Window;
-using namespace SpaceInvaders::Icon;
 
-void Window::enqueueGO(GameObject* gobject) //places gameobject in goQueue
+void SpaceInvaders::Window::enqueueGO(GameObject* gobject) //places gameobject in goQueue
 {
     goQueue.push(gobject);
 }
 
-void Window::enqueueText(SpaceInvaders::Text::Text* txtObject) //places text in textQueue
+void SpaceInvaders::Window::enqueueText(SpaceInvaders::Text* txtObject) //places text in textQueue
 {
     this->textQueue.push(txtObject);
 }
 
-double Window::getTimePast() const
+double SpaceInvaders::Window::getTimePast() const
 {
     return timePast;
 }
 
-void Window::setBackground(Sprite* background)
+void SpaceInvaders::Window::setBackground(Sprite* background)
 {
    this->background = background;
 }
 
-void Window::setIcon(Icon::Icon* icon)
+void SpaceInvaders::Window::setIcon(Icon* icon)
 {
     this->icon= icon;
 }
 
-double Window::getStopwatch() const
+double SpaceInvaders::Window::getStopwatch() const
 {
     return stopwatch;
 }
