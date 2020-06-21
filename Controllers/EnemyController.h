@@ -32,6 +32,8 @@ namespace SpaceInvaders::Controllers
 
         int getLevel() const;
 
+        void setLevel(int level);
+
     private:
         vector<Enemy*> enemyVector;
         bool moveRight=true;

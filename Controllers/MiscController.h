@@ -25,6 +25,7 @@ namespace SpaceInvaders::Controllers
         void bonus(double timepast,SpaceInvaders::Window::Window* win);
         void moveBonus(double timepast);
         void removeBonus();
+        string dispTime(double stopwatch);
 
         const vector<BonusShip*> & getBonusVector() const;
 

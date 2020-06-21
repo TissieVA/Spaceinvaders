@@ -20,6 +20,8 @@ private:
     double timePast;
     bool gameOver = false;
     bool restart = true;
+    double stopwatch;
+    double startTime;
 };
 
 

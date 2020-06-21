@@ -38,9 +38,11 @@ namespace SpaceInvaders::Window
         double stopwatch;
         Sprite* background;
         Icon::Icon* icon;
-        bool returnTime = true;
+
     public:
         double getTimePast() const;
+
+        double getStopwatch() const;
 
     };
 }
