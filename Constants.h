@@ -21,7 +21,7 @@ const int BONUSSHIP_HEIGHT = 50;
 
 
 const int PLAYER_SPEED = 500;
-const int ENEMY_SPEED = 100;
+const int ENEMY_SPEED = 150;
 const int ENEMY_BULLET_SPEED = 160;
 const int PLAYER_BULLET_SPEED =500;
 const int BONUSSHIP_SPEED=100;

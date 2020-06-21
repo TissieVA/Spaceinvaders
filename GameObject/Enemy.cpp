@@ -5,20 +5,21 @@
 #include "Enemy.h"
 #include "../Controllers/GameController.h"
 #include "../Game.h"
-//#include<cmath>
+
 using namespace SpaceInvaders::Controllers;
 
 Enemy::Enemy(int xpos, int ypos, int width, int height) : GameObject(xpos, ypos, width, height)
 {
     this->sprite = GameController::getInstance().getFactory()->makeSprite("Assets/enemy.png");
     this->alive=true;
-    this->xDirection = 1;
+    this->xDirection = 1; //set start direction to the right
 }
 
 void Enemy::update(double timepast)
 {
-    if (timepast >0)
-        move(speed*levelSpeed*xDirection*timepast*SCALE_X,yDirection*DROPDOWNAMOUNT*SCALE_Y);
+    if (timepast > 0)
+        move(speed * levelSpeed * xDirection * timepast * SCALE_X, yDirection * DROPDOWNAMOUNT *
+                                                                   SCALE_Y); //move x direction is speed x timepast x levelspeed | move y direction is dropdown (if ydirection isn't 0 see enemycontroller)
 }
 
 void Enemy::setXDirection(int xDirection)

@@ -51,27 +51,27 @@ void GameObject::setWidth(int width) {
 
 void GameObject::move(double x_direction,double y_direction) {
 
-    if (xPos + width + x_direction > SCREEN_WIDTH)
+    if (xPos + width + x_direction > SCREEN_WIDTH) //check if hasn't hit right side of screen, otherwise set xpos to right side
         xPos = SCREEN_WIDTH - width;
 
-    else if (xPos + x_direction < 0)
+    else if (xPos + x_direction < 0) //check if not at left side of screen
     {
         xPos = 0;
     }
     else
     {
-        xPos += x_direction;
+        xPos += x_direction; //move with 1
     }
 
-    if (yPos + height + y_direction > SCREEN_HEIGHT)
+    if (yPos + height + y_direction > SCREEN_HEIGHT) //check if not at bottom of screen, otherwise set ypos to bottom
         yPos = SCREEN_HEIGHT - height;
 
-    else if (yPos + y_direction <0)
+    else if (yPos + y_direction <0) //check if not at top of screen
     {
         yPos = 0;
     }
     else
     {
-        yPos += y_direction;
+        yPos += y_direction; //move with one
     }
 }

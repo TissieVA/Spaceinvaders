@@ -26,7 +26,7 @@ Bullet::Bullet(int xPos, int yPos, int width, int height, int direction, bool en
 void Bullet::update(double timePast)
 {
     if (timePast > 0)
-        move(0,direction*speed*timePast*SCALE_Y); //move amount timepast times speed
+        move(0,direction*speed*timePast*SCALE_Y); //amount moved is timepast times speed
 }
 
 
