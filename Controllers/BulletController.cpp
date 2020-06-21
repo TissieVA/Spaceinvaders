@@ -118,7 +118,7 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
                 }
             }
 
-            for (auto* cover : coverVector)
+            for (auto* cover : coverVector)  //check if enemy hit cover
             {
                 if ((bullet->getYpos() + bullet->getHeight() < cover->getYpos() + cover->getHeight()) && (bullet->getYpos() + bullet->getHeight() > cover->getYpos()))
                 {
