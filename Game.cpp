@@ -43,13 +43,14 @@ void Game::run() {
         startTime=win->getStopwatch(); //start stopwatch
 
         srand(time(NULL)); //use current time as randomizers seed
+        miscCo->createCover();
 
         while (!win->pollEvents()) //while escape hasn't been touched
         {
             timePast = win->getTimePast(); //get time it took to create a frame
-            if(pla->isShoot()) //if player has hit spacebar
+            if(pla->isShoot())             //if player has hit spacebar
                 buCo->addBullet(lround(pla->getXpos()+pla->getWidth()/2), pla->getYpos(),-1,false);
-            pla->update(timePast); //move player in relation to the time
+            pla->update(timePast);         //move player in relation to the time
             scoreText->setText("SCORE:"+to_string(buCo->getScore()));
             levelText->setText("LEVEL:"+to_string(enCo->getLevel()));
 
@@ -63,11 +64,11 @@ void Game::run() {
             win->enqueueText(timeText);
             enCo->enqueueEnemies(win);   //set all the enemies to be shown on screen (in EnemyController)
             buCo->enqueueBullets(win);   //set bullets to be shown on screen
-
+            miscCo->enqueueCover(win);
             enCo->moveEnemies(timePast);
             miscCo->bonus(timePast,win); //try to spawn bonusship
 
-            buCo->moveBullets(timePast,enCo->getEnemyVector(),miscCo->getBonusVector()); //move bullets (if not hit) according to time
+            buCo->moveBullets(timePast,enCo->getEnemyVector(),miscCo->getBonusVector(),miscCo->getCoverVector()); //move bullets (if not hit) according to time
             miscCo->showHealth(pla->getHealth()); //set health to be shown on screen
 
 
@@ -119,7 +120,8 @@ void Game::run() {
                 miscCo->removeBonus();
                 buCo->setScore(0); //reset score
                 enCo->setLevel(0);
-                if(!restart)             // if we got out of gamover pollevents but not because of restart -> because of escape button-> stop game
+                miscCo->createCover();
+                if(!restart)             // if we got out of gameover pollevents but not because of restart -> because of escape button-> stop game
                     break;               //go out of pollevent loop
             }
         }

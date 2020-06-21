@@ -10,6 +10,7 @@
 #include "../GameObject/Enemy.h"
 #include "../GameObject/Player.h"
 #include "../GameObject/BonusShip.h"
+#include "../GameObject/Cover.h"
 #include <vector>
 using namespace std;
 
@@ -23,7 +24,7 @@ namespace SpaceInvaders::Controllers
 
         void addBullet(int xPos, int yPos,int direction,bool fromEnemy);
         void enqueueBullets(SpaceInvaders::Window::Window* win);
-        void moveBullets(double timePast, vector<Enemy*> enemyVector, vector<BonusShip*> bonusVector);
+        void moveBullets(double timePast, vector<Enemy*> enemyVector, vector<BonusShip*> bonusVector, vector<Cover*> coverVector);
         void removeBullets();
 
         int getScore() const;
