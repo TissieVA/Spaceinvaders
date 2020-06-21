@@ -93,7 +93,6 @@ void Game::run() {
 
                 timeText->setYPos(lround(10*SCALE_Y)); //place time text at top of screen
 
-                printf("TimePast = %f",stopwatch);
                 gameOverText->setText("Score:"+to_string(buCo->getScore())); //set gameovertext as text to the score the player got
                 timeText->setText("Time: "+miscCo->dispTime(stopwatch));
 

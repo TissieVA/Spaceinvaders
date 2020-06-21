@@ -52,7 +52,6 @@ bool SDLWindow::create() {
                     }
                     else
                         screenSurface = SDL_GetWindowSurface(window);
-                        stopwatch=SDL_GetTicks();
                 }
             }
         }
@@ -122,6 +121,7 @@ void SDLWindow::draw() {
         SDL_Delay(Time_120fps - frameTicks); //if time was to short delay
     }
     timePast= (SDL_GetTicks() - ticks)/1000.f;
+
     stopwatch =SDL_GetTicks();
 }
 
