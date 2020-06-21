@@ -19,7 +19,7 @@ void EnemyController::createEnemies()
     for (int j = 0; j < columns; ++j) {
 
         for (int i = 0; i < rows; ++i) {
-            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * j)), lround(90*SCALE_Y+ SCALE_Y * (10+(100*i))), lround(SCALE_X*ENEMY_WIDTH),
+            auto* enem = new Enemy(lround(SCALE_X * (20 + (50 + 40) * j)), lround(80*SCALE_Y+ SCALE_Y * (10+(100*i))), lround(SCALE_X*ENEMY_WIDTH),
                                    lround(SCALE_Y*ENEMY_HEIGHT));
             enemyVector.push_back(enem);
         }
@@ -82,7 +82,7 @@ void EnemyController::moveEnemies(double timePast)
 
             if((rand() %(CHANCE-10*level) +1) ==1) //chance of enemy to shoot ad-nd every level little bit more chance
             {
-                buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight(),1,true);
+                buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight()-50,1,true);
             }
         }
 
