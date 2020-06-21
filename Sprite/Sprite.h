@@ -15,7 +15,7 @@ namespace SpaceInvaders::Sprites
     public:
         Sprite(std::string path);
 
-        virtual void loadSprite() = 0;
+        virtual void loadSprite() = 0; //will be used on SDL side (SDL factory)
 
         virtual void* dispSprite() = 0;
 

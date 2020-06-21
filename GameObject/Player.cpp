@@ -26,8 +26,8 @@ void Player::KeyPressedDown(SpaceInvaders::Events::Key press) {
 
         case SpaceInvaders::Events::NOTHING:
             break;
-        case SpaceInvaders::Events::SPACE:
 
+        case SpaceInvaders::Events::SPACE:
             break;
     }
 }
@@ -36,12 +36,12 @@ void Player::KeyPressedUp(SpaceInvaders::Events::Key press) {
     switch (press)
     {
         case SpaceInvaders::Events::Key::LEFT :
-            if(direction < 0)
+            if(direction < 0) //stop moving player when button is released
                 direction=0;
             break;
 
         case SpaceInvaders::Events::Key::RIGHT :
-            if(direction >0)
+            if(direction >0) //stop moving player when button is released
                 direction=0;
             break;
 
@@ -49,7 +49,7 @@ void Player::KeyPressedUp(SpaceInvaders::Events::Key press) {
             break;
 
         case SpaceInvaders::Events::SPACE:
-            this->shoot=true;
+            this->shoot=true; //space is hit so we want to shoot
             restart = true;
             break;
     }

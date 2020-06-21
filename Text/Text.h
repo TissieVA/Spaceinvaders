@@ -18,7 +18,7 @@ namespace SpaceInvaders::Text
 
         void setText(string text);
 
-        virtual void createTexture() =0;
+        virtual void createTexture() =0; //on SDL side
         virtual void* display() = 0;
 
         int getHeight() const;

@@ -8,12 +8,12 @@ using namespace SpaceInvaders::GameObjects;
 using namespace SpaceInvaders::Window;
 using namespace SpaceInvaders::Icon;
 
-void Window::enqueueGO(GameObject* gobject)
+void Window::enqueueGO(GameObject* gobject) //places gameobject in goQueue
 {
     goQueue.push(gobject);
 }
 
-void Window::enqueueText(SpaceInvaders::Text::Text* txtObject)
+void Window::enqueueText(SpaceInvaders::Text::Text* txtObject) //places text in textQueue
 {
     this->textQueue.push(txtObject);
 }

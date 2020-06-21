@@ -14,7 +14,7 @@ namespace SpaceInvaders::Icon
     public:
         Icon(std::string path);
 
-        virtual void loadIcon() =0;
+        virtual void loadIcon() =0; //will be used on SDL side
         virtual void* dispIcon()=0;
 
     protected:
