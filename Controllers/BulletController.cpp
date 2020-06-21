@@ -3,6 +3,7 @@
 //
 
 #include "BulletController.h"
+#include "../GameObject/Cover.h"
 #include <math.h>
 using namespace std;
 using namespace SpaceInvaders::Controllers;
@@ -44,7 +45,7 @@ void BulletController::enqueueBullets(SpaceInvaders::Window::Window* win)
     }
 }
 
-void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,vector<BonusShip*> bonusVector)
+void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,vector<BonusShip*> bonusVector,vector<Cover*> coverVector)
 {
     for (auto* bullet: bulletVector)
     {
@@ -88,6 +89,21 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
                     }
                 }
             }
+
+            for (auto* cover : coverVector) //check if player hits cover
+            {
+                if (bullet->getXpos() + (bullet->getWidth() / 2) > cover->getXpos() &&
+                    bullet->getXpos() + (bullet->getWidth() / 2) < cover->getXpos() +
+                                                                   cover->getWidth())
+                {
+                        if (bullet->getYpos() > cover->getYpos() && bullet->getYpos() < cover->getYpos() + cover->getHeight())
+                    {
+                        bullet->setAlive(false);
+                        cover->setAlive(false);
+                        break;
+                    }
+                }
+            }
         }
         else if (bullet->getDirection()>0) //coming from enemy
         {
@@ -99,6 +115,19 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
                 {
                     player->setHealth(player->getHealth() - 1); //reduce health with one
                     bullet->setAlive(false); //kill bullet
+                }
+            }
+
+            for (auto* cover : coverVector)
+            {
+                if ((bullet->getYpos() + bullet->getHeight() < cover->getYpos() + cover->getHeight()) && (bullet->getYpos() + bullet->getHeight() > cover->getYpos()))
+                {
+                    if ((lround(bullet->getXpos() + bullet->getWidth() / 2)) >= cover->getXpos()  && lround(bullet->getXpos() + bullet->getWidth() / 2) <= cover->getXpos() + cover->getWidth())
+                    {
+                        bullet->setAlive(false);
+                        cover->setAlive(false);
+                        break;
+                    }
                 }
             }
 

@@ -77,12 +77,6 @@ void MiscController::removeBonus()
     bonusVector.clear();
 }
 
-MiscController::~MiscController()
-{
-    bonusVector.clear();
-    heartsVector.clear();
-}
-
 string MiscController::dispTime(double stopwatch)
 {
     string timeString;
@@ -106,6 +100,55 @@ string MiscController::dispTime(double stopwatch)
     }
 
     return timeString;
+}
+
+void MiscController::createCover()
+{
+    for (int j = 1; j < 4; ++j)
+    {
+        for (int i = 1; i < 5; ++i)
+        {
+            auto* cover = new Cover(lround(300 * SCALE_X *j+ COVER_SIZE * SCALE_X * i), lround(550 * SCALE_Y), lround(SCALE_X*COVER_SIZE), lround(SCALE_Y*COVER_SIZE),1); //flat side of cover
+            coverVector.push_back(cover);
+        }
+
+        auto* coverLeft = new Cover(lround(300 * SCALE_X *j), lround(570 * SCALE_Y), lround(SCALE_X*COVER_SIZE), lround(SCALE_Y*COVER_SIZE),1); //left down block
+        coverVector.push_back(coverLeft);
+        auto* coverRight = new Cover(lround(300 * SCALE_X *j+COVER_SIZE*SCALE_X*5), lround(570 * SCALE_Y), lround(SCALE_X*COVER_SIZE), lround(SCALE_Y*COVER_SIZE),1); //right down block
+        coverVector.push_back(coverRight);
+        auto coverLeftCorner = new Cover(lround(300 * SCALE_X *j), lround(550 * SCALE_Y), lround(SCALE_X*COVER_SIZE), lround(SCALE_Y*COVER_SIZE),2); //left corner
+        coverVector.push_back(coverLeftCorner);
+        auto* coverRightCorner = new Cover(lround(300 * SCALE_X *j+COVER_SIZE*SCALE_X*5), lround(550 * SCALE_Y), lround(SCALE_X*COVER_SIZE), lround(SCALE_Y*COVER_SIZE),3);
+        coverVector.push_back(coverRightCorner);
+    }
+
+}
+
+void MiscController::enqueueCover(SpaceInvaders::Window::Window* win)
+{
+    for(int i=0; i<coverVector.size(); i++)
+    {
+        auto* cover = coverVector.at(i);
+        if(!cover->isAlive())
+            coverVector.erase(coverVector.begin()+i);
+    }
+
+    for (auto* cover : coverVector)
+    {
+        win->enqueueGO(cover);
+    }
+}
+
+const vector<Cover*> & MiscController::getCoverVector() const
+{
+return coverVector;
+}
+
+MiscController::~MiscController()
+{
+    bonusVector.clear();
+    heartsVector.clear();
+    coverVector.clear();
 }
 
 

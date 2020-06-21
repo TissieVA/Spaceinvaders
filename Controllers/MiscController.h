@@ -9,6 +9,8 @@
 #include "../Window/Window.h"
 #include "../GameObject/Health.h"
 #include "../GameObject/BonusShip.h"
+#include "../GameObject/Cover.h"
+
 using namespace SpaceInvaders::Window;
 
 namespace SpaceInvaders::Controllers
@@ -26,15 +28,20 @@ namespace SpaceInvaders::Controllers
         void moveBonus(double timepast);
         void removeBonus();
         string dispTime(double stopwatch);
+        void createCover();
+        void enqueueCover(SpaceInvaders::Window::Window* win);
 
-        const vector<BonusShip*> & getBonusVector() const;
+        const vector<BonusShip*> &getBonusVector() const;
+
+        const vector<Cover*> &getCoverVector() const;
+
 
     private:
         SpaceInvaders::Window::Window* win;
         vector<Health*> heartsVector;
         bool moveRight =true;
         vector<BonusShip*> bonusVector;
-
+        vector<Cover*> coverVector;
     };
 
 }

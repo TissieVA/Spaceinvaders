@@ -7,8 +7,8 @@
 
 const int SCREEN_WIDTH_DEFAULT = 1280;
 const int SCREEN_HEIGHT_DEFAULT = 720;
-const int SCREEN_WIDTH = 2560/2;
-const int SCREEN_HEIGHT = 1440/2;
+const int SCREEN_WIDTH = 2560/3;
+const int SCREEN_HEIGHT = 1440/3;
 const int ENEMY_BULLET_WIDTH = 15;
 const int ENEMY_BULLET_HEIGHT = 30;
 const int PLAYER_BULLET_WIDTH = 10;
@@ -16,10 +16,11 @@ const int PLAYER_BULLET_HEIGHT = 28;
 
 const int PLAYER_HEIGHT= 773/8;
 const int PLAYER_WIDTH= 1267/8;
-const int ENEMY_HEIGHT=185/2.7;
-const int ENEMY_WIDTH=200/2.7;
+const int ENEMY_HEIGHT=185/3;
+const int ENEMY_WIDTH=200/3;
 const int BONUSSHIP_WIDTH =100;
 const int BONUSSHIP_HEIGHT = 50;
+const int COVER_SIZE = 20;
 
 const int PLAYER_SPEED = 500;
 const int ENEMY_SPEED = 150;
