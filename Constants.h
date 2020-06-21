@@ -27,7 +27,7 @@ const int PLAYER_BULLET_SPEED =500;
 const int BONUSSHIP_SPEED=100;
 const int SPEED_MULTIPLIER = 10;//(SPEED_MULTIPLIER+level-1)/SPEED_MULTIPLIER -> SPEED_MULTIPLIER = how many levels before speed doubles
 
-const int CHANCE =1000; //chance of the enemy shooting a bullet (lower is more chance)
+const int CHANCE =700; //chance of the enemy shooting a bullet (lower is more chance)
 const int BONUSCHANCE =2000;
 
 const int DROPDOWNAMOUNT =30; //how much the enemies go down if they hit the border

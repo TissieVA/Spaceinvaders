@@ -9,7 +9,3 @@ Health::Health(int xPos, int yPos, int width, int height) : GameObject(xPos,yPos
 {
     this->sprite= GameController::getInstance().getFactory()->makeSprite("Assets/heart.png");
 }
-
-void Health::update(double timePast)
-{
-}

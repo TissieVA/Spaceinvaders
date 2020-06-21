@@ -16,7 +16,7 @@ void BulletController::addBullet(int xPos, int yPos,int direction, bool fromEnem
 {
     if(fromEnemy)
     {
-        auto* bullet = new Bullet(xPos, yPos + lround(ENEMY_BULLET_HEIGHT * SCALE_Y) +10,
+        auto* bullet = new Bullet(xPos, yPos + lround(ENEMY_BULLET_HEIGHT * SCALE_Y) ,
                 lround(ENEMY_BULLET_WIDTH * SCALE_X), lround(ENEMY_BULLET_HEIGHT * SCALE_Y), direction, fromEnemy);
         bulletVector.push_back(bullet);
     }
@@ -60,11 +60,9 @@ void BulletController::moveBullets(double timePast, vector<Enemy*> enemyVector,v
                     if (bullet->getYpos() > enem->getYpos() && bullet->getYpos() < enem->getYpos() + enem->getHeight())
                     {
                         //hit with an enemy
-                        if(enem->isCanShoot()) //can only kill lowest in a column
-                        {
-                            enem->setAlive(false); //set enemy to dead
-                            score += lround((SCREEN_HEIGHT - enem->getYpos())/5); //higher score if enemy is at top of screen
-                        }
+
+                        enem->setAlive(false); //set enemy to dead
+                        score += lround((SCREEN_HEIGHT - enem->getYpos())/5); //higher score if enemy is at top of screen
                         bullet->setAlive(false); //set bullet to dead
 
                         break; //enemy hit

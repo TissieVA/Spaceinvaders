@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 20/06/2020.
+// Created by Tijs Van Alphen on 20/06/2020.
 //
 
 #include "Icon.h"

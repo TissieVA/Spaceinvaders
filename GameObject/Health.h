@@ -16,7 +16,7 @@ namespace SpaceInvaders::GameObjects
     public:
         Health(int xPos, int yPos, int width, int height);
 
-        void update(double timePast) override;
+        void update(double timePast) override {};
     };
 }
 

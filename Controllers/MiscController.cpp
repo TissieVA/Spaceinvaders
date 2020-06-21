@@ -13,12 +13,15 @@ MiscController::MiscController(SpaceInvaders::Window::Window* win)
 
 void MiscController::showHealth(int health) //sets the amounts of heart icons to enqueue
 {
-    heartsVector.clear();
-    for (int i = 0; i < health+1; i++)
+    if(health+1 != heartsVector.size()) //check if health has changed
     {
-        auto* heart = new Health(lround(SCREEN_WIDTH - i * 40 * SCALE_X), lround(10 * SCALE_Y),
-                lround(30 * SCALE_X), lround(30 * SCALE_Y));
-        heartsVector.push_back(heart);
+        heartsVector.clear();
+        for (int i = 0; i < health + 1; i++)
+        {
+            auto* heart = new Health(lround(SCREEN_WIDTH - i * 40 * SCALE_X), lround(10 * SCALE_Y),
+                    lround(30 * SCALE_X), lround(30 * SCALE_Y));
+            heartsVector.push_back(heart);
+        }
     }
 
     for (auto* heart : heartsVector)

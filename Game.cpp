@@ -61,7 +61,7 @@ void Game::run() {
             miscCo->bonus(timePast,win); //try to spawn bonusship
 
             buCo->moveBullets(timePast,enCo->getEnemyVector(),miscCo->getBonusVector()); //move bullets (if not hit) according to time
-            miscCo->showHealth(pla->getHealth()); //set health to be shown non screen
+            miscCo->showHealth(pla->getHealth()); //set health to be shown on screen
 
 
             if(enCo->isGameOver()) //if enemies has hit the bottom
