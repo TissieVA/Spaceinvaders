@@ -52,6 +52,7 @@ bool SDLWindow::create() {
                     }
                     else
                         screenSurface = SDL_GetWindowSurface(window);
+                        stopwatch=SDL_GetTicks();
                 }
             }
         }
@@ -86,7 +87,11 @@ void SDLWindow::draw() {
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, reinterpret_cast<SDL_Texture*>(background->dispSprite()), nullptr, nullptr);
 
-
+    if(returnTime)
+    {
+        stopwatch = SDL_GetTicks();
+        returnTime= false;
+    }
 
     while(!goQueue.empty()) //as long as objects are in the queue
     {
