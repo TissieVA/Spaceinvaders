@@ -1,6 +1,7 @@
 //
-// Created by tijsv on 9/05/2020.
+// Created by Tijs Van Alphen on 9/05/2020.
 //
+
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_surface.h>
 #include <iostream>
