@@ -35,10 +35,14 @@ namespace SpaceInvaders::Window
         std::queue<SpaceInvaders::GameObjects::GameObject*> goQueue;
         std::queue<SpaceInvaders::Text::Text*> textQueue;
         double timePast;
+        double stopwatch;
         Sprite* background;
         Icon::Icon* icon;
+
     public:
         double getTimePast() const;
+
+        double getStopwatch() const;
 
     };
 }

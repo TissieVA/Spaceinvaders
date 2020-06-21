@@ -34,7 +34,7 @@ void MiscController::bonus(double timepast, SpaceInvaders::Window::Window* win)
 {
     if(rand() %BONUSCHANCE +1 ==1 && bonusVector.empty()) //1 in BONUSCHANCE of spawning and if there isn't another bonusship
     {
-        auto* bonusship = new BonusShip(-lround(SCALE_X*BONUSSHIP_WIDTH),lround(40*SCALE_Y),lround(SCALE_X*BONUSSHIP_WIDTH),lround(SCALE_Y*BONUSSHIP_HEIGHT));
+        auto* bonusship = new BonusShip(-lround(SCALE_X*BONUSSHIP_WIDTH),lround(45*SCALE_Y),lround(SCALE_X*BONUSSHIP_WIDTH),lround(SCALE_Y*BONUSSHIP_HEIGHT));
 
         bonusVector.push_back(bonusship);
         win->enqueueGO(bonusship);
@@ -81,6 +81,31 @@ MiscController::~MiscController()
 {
     bonusVector.clear();
     heartsVector.clear();
+}
+
+string MiscController::dispTime(double stopwatch)
+{
+    string timeString;
+    int minutes = stopwatch/60000.f;               //divided by 60000 gives minutes
+    int seconds = (stopwatch/1000.f)-60*minutes;   //example 70 seconds -> 1 minute and 70-60=10 seconds
+    int millisec = (stopwatch-1000*seconds)/10.f; //divided by 10 to show only 2 digit
+
+    if (minutes < 10)  //show zeros if time is 1 digit;
+    {
+        if(seconds<10)
+            timeString= ("0"+to_string(minutes)+ ":"+ "0"+to_string(seconds)+ ":" +to_string(millisec));
+        else
+            timeString= ("0"+to_string(minutes)+ ":"+to_string(seconds)+ ":" +to_string(millisec));
+    }
+    else
+    {
+        if(seconds<10)
+            timeString= (to_string(minutes)+ ":"+ "0"+to_string(seconds)+ ":" +to_string(millisec));
+        else
+            timeString= (to_string(minutes)+ ":"+to_string(seconds)+ ":" +to_string(millisec));
+    }
+
+    return timeString;
 }
 
 

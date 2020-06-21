@@ -33,5 +33,10 @@ void Window::setIcon(Icon::Icon* icon)
     this->icon= icon;
 }
 
+double Window::getStopwatch() const
+{
+    return stopwatch;
+}
+
 
 

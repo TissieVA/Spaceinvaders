@@ -2,16 +2,13 @@
 //
 
 #include <cmath>
-#include <cstring>
+#include <ctime>
 #include "Game.h"
-#include "Factories/AFactory.h"
-#include "Controllers/GameController.h"
 #include "GameObject/Player.h"
 #include "GameObject/Enemy.h"
 #include "Controllers/EnemyController.h"
-#include "Controllers/BulletController.h"
 #include "Controllers/MiscController.h"
-#include "Text/Text.h"
+
 
 using namespace SpaceInvaders::Factories;
 using namespace SpaceInvaders::Controllers;
@@ -34,13 +31,18 @@ void Game::run() {
         auto* enCo = new EnemyController(ROWS,COLUMNS,buCo); //create enemycontroller + enemies are created here
         auto* miscCo = new MiscController(win); //create miscellaneous controller (health, bonusship)
 
-        auto* scoreText = AF->makeText("SCORE:", lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
+        auto* scoreText = AF->makeText("SCORE:", lround(SCREEN_WIDTH/2 - 30*SCALE_X), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
         auto* levelText = AF->makeText("LEVEL:",lround(10*SCALE_X),lround(10*SCALE_Y),lround(15*SCALE_Y),"Assets/PressStart2P.ttf");
+        auto* timeText = AF->makeText("TIME:", lround(10*SCALE_X), lround(30*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
 
         GameController::getInstance().getEventmanager() ->addObserver(pla); //adding the player as an observer
 
         win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png"));
         win->setIcon(GameController::getInstance().getFactory()->makeIcon("Assets/spaceshipIcon.png"));
+
+        startTime=win->getStopwatch(); //start stopwatch
+
+        srand(time(NULL)); //use current time as randomizers seed
 
         while (!win->pollEvents()) //while escape hasn't been touched
         {
@@ -51,9 +53,14 @@ void Game::run() {
             scoreText->setText("SCORE:"+to_string(buCo->getScore()));
             levelText->setText("LEVEL:"+to_string(enCo->getLevel()));
 
+            ///display time in minutes and seconds
+            stopwatch = (win->getStopwatch()-startTime);
+            timeText->setText("TIME: "+miscCo->dispTime(stopwatch));
+
             win->enqueueGO(pla);          //set player in a list to be shown on screen
             win->enqueueText(scoreText);  //set text to be shown on screen
             win->enqueueText(levelText);
+            win->enqueueText(timeText);
             enCo->enqueueEnemies(win);   //set all the enemies to be shown on screen (in EnemyController)
             buCo->enqueueBullets(win);   //set bullets to be shown on screen
 
@@ -83,19 +90,28 @@ void Game::run() {
                 auto* gameOverText = AF->makeText(std::string("Score"), lround(SCREEN_WIDTH/2 -100*SCALE_X), lround(10*SCALE_Y), lround(25*SCALE_Y), "Assets/PressStart2P.ttf");
                 pla->setRestart(false); //space hit during game won't count
 
+
+                timeText->setYPos(lround(10*SCALE_Y)); //place time text at top of screen
+
+                printf("TimePast = %f",stopwatch);
+                gameOverText->setText("Score:"+to_string(buCo->getScore())); //set gameovertext as text to the score the player got
+                timeText->setText("Time: "+miscCo->dispTime(stopwatch));
+
                 while(!win->pollEvents()) //while escape isn't hit
                 {
                     restart = pla->isRestart();                                       //set restart to the restart in player, if player hits space restart will be true
-                    gameOverText->setText("Score:"+to_string(buCo->getScore())); //set gameovertext as text to the score the player got
                     win->enqueueText(gameOverText);                                   //set text to be shown on screen
-                    win->draw();                                                      //draw background and score
+                    win->enqueueText(timeText);
+                    win->draw();                                                      //draw background score and time
                     if(restart)                                                       //if space was hit we'll want to restart;
                         break;
                 }
 
-                gameOver = false;             //set gameover back to false
-                pla->setHealth(START_HEALTH); //reset player health
-                pla->setShoot(false);   //set shoot to false, otherwise the space of restart will be counted as a bullet shot
+                startTime = win->getStopwatch(); //new starttime
+                gameOver = false;                //set gameover back to false
+                timeText->setYPos(lround(30*SCALE_Y));
+                pla->setHealth(START_HEALTH);    //reset player health
+                pla->setShoot(false);     //set shoot to false, otherwise the space of restart will be counted as a bullet shot
                 pla->setXpos(lround(SCREEN_WIDTH/2));
                 pla->setYpos(lround(SCREEN_HEIGHT-20*SCALE_Y-SCALE_Y*773/8));
                 win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png")); //set background back to game background
@@ -103,6 +119,7 @@ void Game::run() {
                 buCo->removeBullets();
                 miscCo->removeBonus();
                 buCo->setScore(0); //reset score
+                enCo->setLevel(0);
                 if(!restart)             // if we got out of gamover pollevents but not because of restart -> because of escape button-> stop game
                     break;               //go out of pollevent loop
             }

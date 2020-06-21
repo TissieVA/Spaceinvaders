@@ -22,22 +22,16 @@ public:
     void remove() override ;
     void draw() override ;
     bool pollEvents() override;
-
-
-
     SDL_Renderer* getRenderer(){return renderer;}
     void KeyEvent(SDL_Keycode press, bool pressed);
-
 
 private:
     SDL_Window* window = nullptr;
     SDL_Surface* screenSurface = nullptr;
     SDL_Surface* image = nullptr;
-    SDL_Surface* PNGSurface = nullptr;
     SDL_Surface* textSurface = nullptr;
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* texture = nullptr;
-    TTF_Font* font= nullptr;
     SDL_Texture* text = nullptr;
 
 };
