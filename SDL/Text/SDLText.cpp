@@ -16,13 +16,13 @@ SDLText::SDLText(string text, int x, int y, int fontSize, string font) : Text(te
 
 void SDLText::createTexture()
 {
-    SDL_Color color = {255,255,255};
-    auto* surface = TTF_RenderUTF8_Solid(reinterpret_cast<TTF_Font*>(this->font),text.c_str(), color);
+    SDL_Color color = {255,255,255}; //white color text
+    auto* surface = TTF_RenderUTF8_Solid(reinterpret_cast<TTF_Font*>(this->font),text.c_str(), color); //create surface from ttf
 
     auto* win = SpaceInvaders::Controllers::GameController::getInstance().getWindow();
     auto* winSDL = dynamic_cast<SDLWindow*>(win);
 
-    this->texture = SDL_CreateTextureFromSurface(winSDL->getRenderer(), surface);
+    this->texture = SDL_CreateTextureFromSurface(winSDL->getRenderer(), surface); //create texture from surface
     this->width = surface->w * SCALE_X;
     this->height = surface->h * SCALE_Y;
 

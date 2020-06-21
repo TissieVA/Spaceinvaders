@@ -22,14 +22,9 @@ void SDLSprite::loadSprite()
         auto* window = GameController::getInstance().getWindow();
         auto* sdlWindow = dynamic_cast<SDLWindow*>(window);
 
-
-        SDL_SetColorKey(loadedSurface,SDL_TRUE, SDL_MapRGB(loadedSurface->format,0, 0xFF,0xFF));
-
-        texture = SDL_CreateTextureFromSurface(sdlWindow->getRenderer() , loadedSurface);
+        texture = SDL_CreateTextureFromSurface(sdlWindow->getRenderer() , loadedSurface); //create texture from surface
         if (texture == nullptr)
             printf("Unable to optimize image %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-        else
-            int w = loadedSurface->w;
 
         SDL_FreeSurface(loadedSurface);
     }

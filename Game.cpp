@@ -29,13 +29,13 @@ void Game::run() {
     restart = false;
 
     if (win->create()) {
-        auto* pla = new Player(lround(SCREEN_WIDTH/2), lround(SCREEN_HEIGHT-20*SCALE_Y-SCALE_Y*773/8), lround(SCALE_X*1267/8), lround(SCALE_Y*773/8)); //create player
+        auto* pla = new Player(lround((SCREEN_WIDTH/2)-((PLAYER_WIDTH*SCALE_X)/2)), lround(SCREEN_HEIGHT-20*SCALE_Y-SCALE_Y*PLAYER_HEIGHT), lround(SCALE_X*PLAYER_WIDTH), lround(SCALE_Y*PLAYER_HEIGHT)); //create player
         auto* buCo = new BulletController(pla); //create bullet controller
         auto* enCo = new EnemyController(ROWS,COLUMNS,buCo); //create enemycontroller + enemies are created here
         auto* miscCo = new MiscController(win); //create miscellaneous controller (health, bonusship)
 
-        auto* scoreText = AF->makeText("Score:", lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
-        auto* levelText = AF->makeText("Level:",lround(10*SCALE_X),lround(10*SCALE_Y),lround(15*SCALE_Y),"Assets/PressStart2P.ttf");
+        auto* scoreText = AF->makeText("SCORE:", lround(SCREEN_WIDTH/2), lround(10*SCALE_Y), lround(15*SCALE_Y), "Assets/PressStart2P.ttf");
+        auto* levelText = AF->makeText("LEVEL:",lround(10*SCALE_X),lround(10*SCALE_Y),lround(15*SCALE_Y),"Assets/PressStart2P.ttf");
 
         GameController::getInstance().getEventmanager() ->addObserver(pla); //adding the player as an observer
 
@@ -48,8 +48,8 @@ void Game::run() {
             if(pla->isShoot()) //if player has hit spacebar
                 buCo->addBullet(lround(pla->getXpos()+pla->getWidth()/2), pla->getYpos(),-1,false);
             pla->update(timePast); //move player in relation to the time
-            scoreText->setText("Score:"+to_string(buCo->getScore()));
-            levelText->setText("Level:"+to_string(enCo->getLevel()));
+            scoreText->setText("SCORE:"+to_string(buCo->getScore()));
+            levelText->setText("LEVEL:"+to_string(enCo->getLevel()));
 
             win->enqueueGO(pla);          //set player in a list to be shown on screen
             win->enqueueText(scoreText);  //set text to be shown on screen
@@ -96,6 +96,8 @@ void Game::run() {
                 gameOver = false;             //set gameover back to false
                 pla->setHealth(START_HEALTH); //reset player health
                 pla->setShoot(false);   //set shoot to false, otherwise the space of restart will be counted as a bullet shot
+                pla->setXpos(lround(SCREEN_WIDTH/2));
+                pla->setYpos(lround(SCREEN_HEIGHT-20*SCALE_Y-SCALE_Y*773/8));
                 win->setBackground(GameController::getInstance().getFactory()->makeSprite("Assets/background.png")); //set background back to game background
                 enCo->removeEnemies();
                 buCo->removeBullets();

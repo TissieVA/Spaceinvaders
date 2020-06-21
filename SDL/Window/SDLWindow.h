@@ -22,9 +22,7 @@ public:
     void remove() override ;
     void draw() override ;
     bool pollEvents() override;
-    void drawStretch() override;
-    void loadSurface(std::string path);
-    void loadTexture(std::string path);
+
 
 
     SDL_Renderer* getRenderer(){return renderer;}

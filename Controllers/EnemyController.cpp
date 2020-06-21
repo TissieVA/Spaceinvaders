@@ -79,7 +79,7 @@ void EnemyController::moveEnemies(double timePast)
 
         if(enem->isCanShoot()) //if enemy can shoot (no one underneath him)
         {
-            if((rand() %CHANCE +1) ==1) //chance of enemy to shoot
+            if((rand() %(CHANCE-10*level) +1) ==1) //chance of enemy to shoot ad-nd every level little bit more chance
             {
                 buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight(),1,true);
             }

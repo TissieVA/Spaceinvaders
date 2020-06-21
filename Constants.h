@@ -14,11 +14,12 @@ const int ENEMY_BULLET_HEIGHT = 30;
 const int PLAYER_BULLET_WIDTH = 10;
 const int PLAYER_BULLET_HEIGHT = 28;
 
+const int PLAYER_HEIGHT= 773/8;
+const int PLAYER_WIDTH= 1267/8;
 const int ENEMY_HEIGHT=185/2.7;
 const int ENEMY_WIDTH=200/2.7;
 const int BONUSSHIP_WIDTH =100;
 const int BONUSSHIP_HEIGHT = 50;
-
 
 const int PLAYER_SPEED = 500;
 const int ENEMY_SPEED = 150;
@@ -28,7 +29,7 @@ const int BONUSSHIP_SPEED=100;
 const int SPEED_MULTIPLIER = 10;//(SPEED_MULTIPLIER+level-1)/SPEED_MULTIPLIER -> SPEED_MULTIPLIER = how many levels before speed doubles
 
 const int CHANCE =700; //chance of the enemy shooting a bullet (lower is more chance)
-const int BONUSCHANCE =2000;
+const int BONUSCHANCE =1800;
 
 const int DROPDOWNAMOUNT =30; //how much the enemies go down if they hit the border
 const int ROWS =4; //amount of rows of enemies

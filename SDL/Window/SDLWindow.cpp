@@ -81,27 +81,27 @@ void SDLWindow::draw() {
     uint32_t ticks = SDL_GetTicks();
 
 
-   SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon->dispIcon()));
+    SDL_SetWindowIcon(window, reinterpret_cast<SDL_Surface*>(icon->dispIcon())); //create desktop icon
 
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, reinterpret_cast<SDL_Texture*>(background->dispSprite()), nullptr, nullptr);
 
 
 
-    while(!goQueue.empty())
+    while(!goQueue.empty()) //as long as objects are in the queue
     {
         auto* go=goQueue.front();
-        SDL_Rect stretchRectangle;
-        stretchRectangle.x = lround(go->getXpos());
+        SDL_Rect stretchRectangle; //make rectangle
+        stretchRectangle.x = lround(go->getXpos()); //set x, y, width and height as gameobject
         stretchRectangle.y = lround(go->getYpos());
         stretchRectangle.w = go->getWidth();
         stretchRectangle.h = go->getHeight();
-        SDL_Texture* texture = reinterpret_cast<SDL_Texture*>(go->getSprite()->dispSprite());
-        SDL_RenderCopy(renderer, texture, nullptr, &stretchRectangle);
+        SDL_Texture* texture = reinterpret_cast<SDL_Texture*>(go->getSprite()->dispSprite()); //get the sprite of go and make texture of it
+        SDL_RenderCopy(renderer, texture, nullptr, &stretchRectangle); //set texture on renderer
         goQueue.pop();
     }
 
-    while(!textQueue.empty())
+    while(!textQueue.empty()) //same for text elements
     {
         auto* text = textQueue.front();
         SDL_Rect stretchRectangle;
@@ -114,12 +114,12 @@ void SDLWindow::draw() {
         textQueue.pop();
     }
 
-    SDL_RenderPresent(renderer);
+    SDL_RenderPresent(renderer); //show renderer on screen
 
-    uint32_t frameTicks = SDL_GetTicks() -ticks;
+    uint32_t frameTicks = SDL_GetTicks() -ticks; //get time past ot render everything
     if(frameTicks < Time_120fps)
     {
-        SDL_Delay(Time_120fps - frameTicks);
+        SDL_Delay(Time_120fps - frameTicks); //if time was to short delay
     }
     timePast= (SDL_GetTicks() - ticks)/1000.f;
 }
@@ -171,79 +171,3 @@ void SDLWindow::KeyEvent(SDL_Keycode press, bool pressed) {
         GameController::getInstance().getEventmanager()->KeyUp(key);  //send key to eventmanager methods keyup
     }
 }
-
-void SDLWindow::loadSurface(string path) {
-
-    SDL_Surface* optimizedSurface= nullptr;
-
-    SDL_Surface* loadedSurface= IMG_Load(path.c_str());
-
-    if(loadedSurface== NULL)
-        printf( "Unable to load image %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-    else
-    {
-        optimizedSurface = SDL_ConvertSurface( loadedSurface, screenSurface -> format, 0);
-        if (optimizedSurface == nullptr)
-            printf("Unable to optimize image %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-
-        SDL_FreeSurface(loadedSurface);
-    }
-
-    image= optimizedSurface;
-}
-
-void SDLWindow::loadTexture(string path) {
-
-    // Sprite klasse
-    //  -> Texture
-    //  -> Dimensies
-
-    //Sprite s = new SDLSprite(path);
-    // -> surface laden
-    // -> texture van maken
-    // -> void* giveTexture()
-
-    SDL_Texture* newTexture= nullptr;
-
-    SDL_Surface* loadedSurface= IMG_Load(path.c_str());
-
-    if(loadedSurface== NULL)
-        printf( "Unable to load image %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-    else
-    {
-        SDL_SetColorKey(loadedSurface,SDL_TRUE, SDL_MapRGB(loadedSurface->format,0, 0xFF,0xFF));
-
-        newTexture = SDL_CreateTextureFromSurface( renderer, loadedSurface);
-        if (newTexture == nullptr)
-            printf("Unable to optimize image %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-        else
-            int w = loadedSurface->w;
-
-        SDL_FreeSurface(loadedSurface);
-    }
-
-    texture = newTexture ;
-}
-
-void SDLWindow::drawStretch(){
-
-    if (image == nullptr)
-        printf( "Failed to load stretching image!\n" );
-    SDL_Rect stretchRect;
-    stretchRect.x = 0;
-    stretchRect.y = 0;
-    stretchRect.w = SCREEN_WIDTH;
-    stretchRect.h = SCREEN_HEIGHT;
-    SDL_BlitScaled( image, NULL, screenSurface, &stretchRect );
-    SDL_UpdateWindowSurface( window );
-    }
-
-
-
-
-
-
-
-
-
-

@@ -22,12 +22,6 @@ namespace SpaceInvaders::Window
 
         virtual void draw() = 0;
 
-        virtual void drawStretch() = 0;
-
-        virtual void loadSurface(std::string path) = 0;
-
-        virtual void loadTexture(std::string path) = 0;
-
         void setBackground(Sprite* background);
 
         void setIcon(Icon::Icon* icon);
