@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 9/04/2020.
+// Created by Tijs Van Alphen on 9/04/2020.
 //
 
 #ifndef GAME_ENEMYCONTROLLER_H
@@ -19,7 +19,7 @@ namespace SpaceInvaders::Controllers
     public:
         EnemyController(int rows, int columns,BulletController* buCo);
         void createEnemies();
-        void enqueueEnemies(SpaceInvaders::Window::Window* win);
+        void enqueueEnemies(SpaceInvaders::Window* win);
         void moveEnemies(double timePast);
         void removeEnemies();
 

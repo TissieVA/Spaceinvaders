@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 9/04/2020.
+// Created by Tijs Van Alphen on 9/04/2020.
 //
 
 #include <cmath>
@@ -32,7 +32,7 @@ void EnemyController::createEnemies()
 //      5       9       13   etc.
 
 
-void EnemyController::enqueueEnemies(SpaceInvaders::Window::Window* win)
+void EnemyController::enqueueEnemies(SpaceInvaders::Window* win)
 {
     for(int i=0; i<enemyVector.size() ;i++)
     {
@@ -80,7 +80,7 @@ void EnemyController::moveEnemies(double timePast)
         if(enem->isCanShoot()) //if enemy can shoot (no one underneath him)
         {
 
-            if((rand() %(CHANCE-10*level) +1) ==1) //chance of enemy to shoot ad-nd every level little bit more chance
+            if((rand() %(CHANCE-10*level) +1) ==1) //chance of enemy to shoot and every level little bit more chance
             {
                 buCo->addBullet(lround(enem->getXpos()+enem->getWidth()/2),enem->getYpos()+enem->getHeight()-50,1,true);
             }

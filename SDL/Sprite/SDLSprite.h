@@ -11,18 +11,22 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 using namespace std;
-using namespace SpaceInvaders::Sprites;
 
-class SDLSprite : public Sprite {
-public:
-    SDLSprite(string path):Sprite(path){};
+namespace SDL
+{
+    class SDLSprite : public SpaceInvaders::Sprite
+    {
+    public:
+        SDLSprite(string path) : Sprite(path)
+        {};
 
-    void loadSprite() override;
-    void* dispSprite() override;
+        void loadSprite() override;
 
-private:
-    SDL_Texture* texture;
-};
+        void* dispSprite() override;
 
+    private:
+        SDL_Texture* texture;
+    };
+}
 
 #endif //GAME_SDLSPRITE_H

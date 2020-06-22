@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 9/05/2020.
+// Created by Tijs Van Alphen on 9/05/2020.
 //
 
 #ifndef GAME_TEXT_H
@@ -8,7 +8,7 @@
 #include <string>
 
 using namespace std;
-namespace SpaceInvaders::Text
+namespace SpaceInvaders
 {
     class Text
     {

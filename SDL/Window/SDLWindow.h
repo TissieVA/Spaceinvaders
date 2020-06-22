@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 28/02/2020.
+// Created by Tijs Van Alphen on 28/02/2020.
 //
 
 #ifndef GAME_SDLWINDOW_H
@@ -16,24 +16,33 @@
 #include "../../Controllers/GameController.h"
 #include "../../Constants.h"
 
-class SDLWindow : public SpaceInvaders::Window::Window {
-public:
-    bool create() override ;
-    void remove() override ;
-    void draw() override ;
-    bool pollEvents() override;
-    SDL_Renderer* getRenderer(){return renderer;}
-    void KeyEvent(SDL_Keycode press, bool pressed);
+namespace SDL
+{
+    class SDLWindow : public SpaceInvaders::Window::Window
+    {
+    public:
+        bool create() override;
 
-private:
-    SDL_Window* window = nullptr;
-    SDL_Surface* screenSurface = nullptr;
-    SDL_Surface* image = nullptr;
-    SDL_Surface* textSurface = nullptr;
-    SDL_Renderer* renderer = nullptr;
-    SDL_Texture* texture = nullptr;
-    SDL_Texture* text = nullptr;
+        void remove() override;
 
-};
+        void draw() override;
 
+        bool pollEvents() override;
+
+        SDL_Renderer* getRenderer()
+        { return renderer; }
+
+        void KeyEvent(SDL_Keycode press, bool pressed);
+
+    private:
+        SDL_Window* window = nullptr;
+        SDL_Surface* screenSurface = nullptr;
+        SDL_Surface* image = nullptr;
+        SDL_Surface* textSurface = nullptr;
+        SDL_Renderer* renderer = nullptr;
+        SDL_Texture* texture = nullptr;
+        SDL_Texture* text = nullptr;
+
+    };
+}
 #endif //GAME_SDLWINDOW_H

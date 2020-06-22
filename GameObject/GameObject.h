@@ -8,7 +8,6 @@
 #include "../Sprite/Sprite.h"
 #include "../Constants.h"
 
-using namespace SpaceInvaders::Sprites;
 
 namespace SpaceInvaders::GameObjects
 {

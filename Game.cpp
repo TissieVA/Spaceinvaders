@@ -1,4 +1,4 @@
-// Created by tijsv on 24/02/2020.
+// Created by Tijs Van Alphen on 24/02/2020.
 //
 
 #include <cmath>
@@ -12,7 +12,6 @@
 
 using namespace SpaceInvaders::Factories;
 using namespace SpaceInvaders::Controllers;
-using namespace SpaceInvaders::Text;
 
 Game::Game(AFactory *afac) {
     AF = afac;
@@ -20,7 +19,7 @@ Game::Game(AFactory *afac) {
 
 void Game::run() {
 
-    Window* win = AF->makeWindow(); //create a window
+    SpaceInvaders::Window* win = AF->makeWindow(); //create a window
     GameController::getInstance().setWindow(win);
     GameController::getInstance().setFactory(AF);
     restart = false;

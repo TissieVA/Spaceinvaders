@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 9/05/2020.
+// Created by Tijs Van Alphen on 9/05/2020.
 //
 
 #include "Text.h"

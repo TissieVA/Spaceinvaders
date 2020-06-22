@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 20/06/2020.
+// Created by Tijs Van Alphen on 20/06/2020.
 //
 
 #ifndef GAME_ICON_H
@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace SpaceInvaders::Icon
+namespace SpaceInvaders
 {
     class Icon
     {

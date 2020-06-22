@@ -11,7 +11,6 @@
 #include "../GameObject/BonusShip.h"
 #include "../GameObject/Cover.h"
 
-using namespace SpaceInvaders::Window;
 
 namespace SpaceInvaders::Controllers
 
@@ -19,17 +18,17 @@ namespace SpaceInvaders::Controllers
     class MiscController
     {
     public:
-        MiscController(SpaceInvaders::Window::Window* win);
+        MiscController(SpaceInvaders::Window* win);
 
         virtual ~MiscController();
 
         void showHealth(int health);
-        void bonus(double timepast,SpaceInvaders::Window::Window* win);
+        void bonus(double timepast,SpaceInvaders::Window* win);
         void moveBonus(double timepast);
         void removeBonus();
         string dispTime(double stopwatch);
         void createCover();
-        void enqueueCover(SpaceInvaders::Window::Window* win);
+        void enqueueCover(SpaceInvaders::Window* win);
 
         const vector<BonusShip*> &getBonusVector() const;
 
@@ -37,7 +36,7 @@ namespace SpaceInvaders::Controllers
 
 
     private:
-        SpaceInvaders::Window::Window* win;
+        SpaceInvaders::Window* win;
         vector<Health*> heartsVector;
         bool moveRight =true;
         vector<BonusShip*> bonusVector;

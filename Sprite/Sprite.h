@@ -8,7 +8,7 @@
 #include <string>
 
 
-namespace SpaceInvaders::Sprites
+namespace SpaceInvaders
 {
     class Sprite
     {

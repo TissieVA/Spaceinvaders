@@ -1,5 +1,5 @@
 //
-// Created by tijsv on 28/02/2020.
+// Created by Tijs Van Alphen on 28/02/2020.
 //
 
 #ifndef GAME_WINDOW_H
@@ -11,7 +11,7 @@
 #include "../Text/Text.h"
 #include "../Icon/Icon.h"
 
-namespace SpaceInvaders::Window
+namespace SpaceInvaders
 {
     class Window
     {
@@ -24,20 +24,20 @@ namespace SpaceInvaders::Window
 
         void setBackground(Sprite* background);
 
-        void setIcon(Icon::Icon* icon);
+        void setIcon(Icon* icon);
 
         virtual bool pollEvents() = 0;
 
         void enqueueGO(SpaceInvaders::GameObjects::GameObject* gobject);
-        void enqueueText(SpaceInvaders::Text::Text* txtObject);
+        void enqueueText(SpaceInvaders::Text* txtObject);
 
     protected:
         std::queue<SpaceInvaders::GameObjects::GameObject*> goQueue;
-        std::queue<SpaceInvaders::Text::Text*> textQueue;
+        std::queue<SpaceInvaders::Text*> textQueue;
         double timePast;
         double stopwatch;
         Sprite* background;
-        Icon::Icon* icon;
+        Icon* icon;
 
     public:
         double getTimePast() const;
